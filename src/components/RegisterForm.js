@@ -1,6 +1,9 @@
 import React from 'react';
+import * as actions from '../actions';
+import {connect} from 'react-redux';
 
-export const RegisterForm = () => {
+const RegisterForm = ({register, loginFacebook}) => {
+  console.log(this.state);
   return (
     <div class="text-dark container-fluid row mt-5 mb-5">
       <div class="col">
@@ -94,10 +97,14 @@ export const RegisterForm = () => {
           </div>
           <div class='d-flex flex-column justify-content-center'>
             <div>
-              <button class="btn btn-md btn-primary col-md mb-3">
+              <button onClick={() => register()} class="btn btn-md btn-primary col-md mb-3">
                 Register here </button>
             </div>
             <a class='text-dark'>Already have an account?</a>
+            <div>
+              <button onClick={() => loginFacebook()} class="btn btn-md btn-primary col-md mb-3">
+                Sign Up with Facebook </button>
+            </div>
           </div>
           <div class='col'>
             &nbsp;
@@ -108,5 +115,21 @@ export const RegisterForm = () => {
         &nbsp;
       </div>
     </div>
-);
+  );
 };
+
+const dispatchToPropsMapper = dispatch => ({
+  register: () =>
+  actions.register(dispatch),
+  loginFacebook: () =>
+  actions.loginFacebook(dispatch)
+
+})
+
+const stateToPropsMapper = state => ({
+})
+
+export const RegisterFormContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(RegisterForm);
+
+ 
+
