@@ -20,8 +20,8 @@ export const loginReducer = (state = {}, action) => {
         // return newState
         // newState = {success: 'login-facebook'};
         // return newState;
-        return fetch('https://localhost:8443/login').then(function (response) {
-            console.log(response);
+        return fetch('https://localhost:8443/api/me').then(function (response) {
+            return { currentUser: response };
         })
 
     default:
