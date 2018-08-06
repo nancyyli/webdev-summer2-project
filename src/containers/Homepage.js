@@ -1,14 +1,22 @@
 import React from 'react';
 import {Link, Route} from 'react-router-dom';
-import {RegisterForm} from '../components/RegisterForm'
-import {Profile} from '../components/Profile'
-
+import {RegisterFormContainer} from '../components/RegisterForm'
+import {ProfileContainer} from '../components/Profile'
+import {connect} from 'react-redux'
+import {BrowserRouter as Router} from 'react-router-dom';
+import {Provider} from 'react-redux'
+import {createStore} from 'redux'
+import {loginReducer} from "../reducers/loginReducer"
 
 import '../styles/Homepage.css';
 
-class Homepage extends React.Component {
+let store = createStore(loginReducer, {currentUser: {}});
+export default class Homepage extends React.Component {
   render() {
-    return (<div className="container-fluid ">
+    return (
+      <Provider store={store}>
+      <Router>
+        <div className="container-fluid ">
       <div className="bg-dark">
         <h3 className="display-3 pt-4 pb-4 pl-3 mr-5 ml-4 rounded">kooker</h3>
       </div>
@@ -25,11 +33,15 @@ class Homepage extends React.Component {
         </Link>
         </div>
       </div>
-      <Route path="/register" component={RegisterForm}/>
-        <Route path="/profile" component={Profile}/>
+      <Route path="/register" component={RegisterFormContainer}/>
+      <Route path="/profile" component={ProfileContainer}/>
 
-    </div>);
+    </div>
+    </Router>
+    </Provider>);
   }
 }
 
-export default Homepage;
+
+
+

@@ -1,6 +1,9 @@
 import React from 'react';
+import * as actions from '../actions';
+import {connect} from 'react-redux';
 
-export const Profile = () => {
+export const Profile = (currentUser) => {
+  console.log(currentUser);
   return (<div class="container-fluid mt-5 mb-5">
     <div class="row">
       <div class='col'>
@@ -11,19 +14,19 @@ export const Profile = () => {
         <div class="form-group row">
           <label for="emailFld" class="col-lg-2 col-form-label">Email</label>
           <div class="col-lg-10">
-            <input type="text" readonly="readonly" class="form-control-plaintext" value='{{currentUser.email}}'/>
+            <input type="text" readonly="readonly" class="form-control-plaintext" value={currentUser.currentUser.email}/>
           </div>
         </div>
         <div class="form-group row">
           <label for="usernameFld" class="col-lg-2 col-form-label">Username</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" value='{{currentUser.username}}'/>
+            <input type="text" class="form-control" value={currentUser.currentUser.username}/>
           </div>
         </div>
         <div class="form-group row">
           <label for="passwordFld" class="col-lg-2 col-form-label">Password</label>
           <div class="col-lg-10">
-            <input type="password" class="form-control" value='{{currentUser.password}}'/>
+            <input type="password" class="form-control" value={currentUser.currentUser.password}/>
           </div>
         </div>
         <div class="form-group row">
@@ -31,7 +34,7 @@ export const Profile = () => {
             First Name
           </label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" value='{{currentUser.firstName}}'/>
+            <input type="text" class="form-control" value={currentUser.currentUser.firstName}/>
           </div>
         </div>
         <div class="form-group row">
@@ -39,7 +42,7 @@ export const Profile = () => {
             Last Name
           </label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" value='{{currentUser.lastName}}'/>
+            <input type="text" class="form-control" value={currentUser.currentUser.lastName}/>
           </div>
         </div>
         <div class="form-group row">
@@ -74,3 +77,13 @@ export const Profile = () => {
     </div>
   </div>);
 };
+
+const dispatchToPropsMapper = dispatch => ({
+
+})
+
+const stateToPropsMapper = state => ({
+  currentUser: state.currentUser,
+})
+
+export const ProfileContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Profile);

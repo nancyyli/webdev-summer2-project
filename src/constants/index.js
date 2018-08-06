@@ -1,0 +1,3 @@
+export const REGISTER = 'REGISTER'
+export const LOGIN_FACEBOOK = 'LOGIN_FACEBOOK'
+
