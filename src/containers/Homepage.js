@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, Route} from 'react-router-dom';
 import {RegisterFormContainer} from '../components/RegisterForm'
-import {Profile} from '../components/Profile'
+import {ProfileContainer} from '../components/Profile'
 import {connect} from 'react-redux'
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Provider} from 'react-redux'
@@ -10,7 +10,7 @@ import {loginReducer} from "../reducers/loginReducer"
 
 import '../styles/Homepage.css';
 
-let store = createStore(loginReducer, {success: 'false'});
+let store = createStore(loginReducer, {currentUser: {}});
 export default class Homepage extends React.Component {
   render() {
     return (
@@ -34,7 +34,7 @@ export default class Homepage extends React.Component {
         </div>
       </div>
       <Route path="/register" component={RegisterFormContainer}/>
-      <Route path="/profile" component={Profile}/>
+      <Route path="/profile" component={ProfileContainer}/>
 
     </div>
     </Router>

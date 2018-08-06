@@ -1,6 +1,7 @@
 import React from 'react';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
+import {Link, Route} from 'react-router-dom';
 
 const RegisterForm = ({register, loginFacebook}) => {
   console.log(this.state);
@@ -102,8 +103,10 @@ const RegisterForm = ({register, loginFacebook}) => {
             </div>
             <a class='text-dark'>Already have an account?</a>
             <div>
+            <Link to={'/profile'}>
               <button onClick={() => loginFacebook()} class="btn btn-md btn-primary col-md mb-3">
                 Sign Up with Facebook </button>
+                </Link>
             </div>
           </div>
           <div class='col'>
