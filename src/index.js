@@ -1,19 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Homepage from './containers/Homepage'
+import { Provider } from 'react-redux';
+
+import Homepage from 'containers/Homepage'
+
+import store from 'store';
+
+
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 
-class App extends React.Component {
-  render() {
-    return (
-        <div class=''>
-          <Homepage />
-        </div>
-
+const App = () => {
+  return (
+      <Provider store={store}>
+        <Homepage />
+      </Provider>
   );
-  }
 }
 
 ReactDOM.render(<App/>, document.getElementById('root'));

@@ -1,5 +1,5 @@
 import React from 'react';
-import * as actions from '../actions';
+import * as actions from 'store/actions';
 import {connect} from 'react-redux';
 import {Link, Route} from 'react-router-dom';
 
@@ -98,15 +98,10 @@ const RegisterForm = ({register, loginFacebook}) => {
           </div>
           <div class='d-flex flex-column justify-content-center'>
             <div>
-              <button onClick={() => register()} class="btn btn-md btn-primary col-md mb-3">
-                Register here </button>
+
             </div>
             <a class='text-dark'>Already have an account?</a>
             <div>
-            <Link to={'/profile'}>
-              <button onClick={() => loginFacebook()} class="btn btn-md btn-primary col-md mb-3">
-                Sign Up with Facebook </button>
-                </Link>
             </div>
           </div>
           <div class='col'>
@@ -122,10 +117,7 @@ const RegisterForm = ({register, loginFacebook}) => {
 };
 
 const dispatchToPropsMapper = dispatch => ({
-  register: () =>
-  actions.register(dispatch),
-  loginFacebook: () =>
-  actions.loginFacebook(dispatch)
+
 
 })
 
@@ -133,6 +125,3 @@ const stateToPropsMapper = state => ({
 })
 
 export const RegisterFormContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(RegisterForm);
-
- 
-

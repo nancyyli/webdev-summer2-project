@@ -3,21 +3,15 @@ import {Link, Route} from 'react-router-dom';
 import {RegisterFormContainer} from '../components/RegisterForm'
 import {ProfileContainer} from '../components/Profile'
 import {LoginContainer} from '../components/Login'
-import {connect} from 'react-redux'
 import {BrowserRouter as Router} from 'react-router-dom';
-import {Provider} from 'react-redux'
-import {createStore} from 'redux'
-import {loginReducer} from "../reducers/loginReducer"
 
 import '../styles/Homepage.css';
 import { SearchResultsContainer } from '../components/SearchResults';
 import { SearchResultDetailsContainer } from '../components/SearchResultDetails';
 
-let store = createStore(loginReducer, {currentUser: {}});
-export default class Homepage extends React.Component {
+class Homepage extends React.Component {
   render() {
     return (
-      <Provider store={store}>
       <Router>
         <div className="container-fluid ">
       <div className="bg-dark">
@@ -26,10 +20,10 @@ export default class Homepage extends React.Component {
       <div className='row'>
         <div className='col'>
           <div className="form-group ">
-            <label for="search-input">Search for recipes here</label>
-            <input class="form-control" id="search-input" placeholder="Recipes here"/>
+            <label htmlFor="search-input">Search for recipes here</label>
+            <input className="form-control" id="search-input" placeholder="Recipes here"/>
             <Link to={'/searchresults'}>
-            <button className="submit-search-btn btn btn-primary">Search!</button> 
+            <button className="submit-search-btn btn btn-primary">Search!</button>
             </Link>
           </div>
         </div>
@@ -58,11 +52,8 @@ export default class Homepage extends React.Component {
       <Route path="/searchresults/detail" component={SearchResultDetailsContainer}/>
 
     </div>
-    </Router>
-    </Provider>);
+    </Router>);
   }
 }
 
-
-
-
+export default Homepage;
