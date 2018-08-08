@@ -11,6 +11,7 @@ import {loginReducer} from "../reducers/loginReducer"
 
 import '../styles/Homepage.css';
 import { SearchResultsContainer } from '../components/SearchResults';
+import { SearchResultDetailsContainer } from '../components/SearchResultDetails';
 
 let store = createStore(loginReducer, {currentUser: {}});
 export default class Homepage extends React.Component {
@@ -54,6 +55,7 @@ export default class Homepage extends React.Component {
       <Route path="/profile" component={ProfileContainer}/>
       <Route path="/login" component={LoginContainer}/>
       <Route path="/searchresults" component={SearchResultsContainer}/>
+      <Route path="/searchresults/detail" component={SearchResultDetailsContainer}/>
 
     </div>
     </Router>

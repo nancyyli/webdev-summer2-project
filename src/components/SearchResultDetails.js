@@ -3,14 +3,11 @@ import * as actions from '../actions';
 import {connect} from 'react-redux';
 import {Link, Route} from 'react-router-dom';
 
-//TODO change the link to searchresults/detail/resultId or something
-export const SearchResults = (currentUser) => {
+export const SearchResultDetails = (currentUser) => {
   return (<div class="container-fluid mt-5 mb-5">
     <div class="row">
-      This is the Search Results
-      <Link to={'/searchresults/detail'}>
-      <button className="result-detail-btn">Detail</button>
-      </Link>
+      This is the Search Result Details per search result if u click on it
+
     </div>
   </div>);
 };
@@ -23,4 +20,4 @@ const stateToPropsMapper = state => ({
   currentUser: state.currentUser,
 })
 
-export const SearchResultsContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(SearchResults);
+export const SearchResultDetailsContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(SearchResultDetails);
