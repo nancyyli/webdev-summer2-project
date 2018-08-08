@@ -2,6 +2,7 @@ import React from 'react';
 import {Link, Route} from 'react-router-dom';
 import {RegisterFormContainer} from '../components/RegisterForm'
 import {ProfileContainer} from '../components/Profile'
+import {LoginContainer} from '../components/Login'
 import {connect} from 'react-redux'
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Provider} from 'react-redux'
@@ -30,11 +31,17 @@ export default class Homepage extends React.Component {
         <div className='col'>
           <Link to={'/profile'}>
           <button className="btn btn-warning">Profile</button>
-        </Link>
+          </Link>
+        </div>
+        <div className='col'>
+          <Link to={'/login'}>
+          <button className="btn btn-warning">Login</button>
+          </Link>
         </div>
       </div>
       <Route path="/register" component={RegisterFormContainer}/>
       <Route path="/profile" component={ProfileContainer}/>
+      <Route path="/login" component={LoginContainer}/>
 
     </div>
     </Router>
