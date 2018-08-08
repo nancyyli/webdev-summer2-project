@@ -10,6 +10,7 @@ import {createStore} from 'redux'
 import {loginReducer} from "../reducers/loginReducer"
 
 import '../styles/Homepage.css';
+import { SearchResultsContainer } from '../components/SearchResults';
 
 let store = createStore(loginReducer, {currentUser: {}});
 export default class Homepage extends React.Component {
@@ -21,7 +22,17 @@ export default class Homepage extends React.Component {
       <div className="bg-dark">
         <h3 className="display-3 pt-4 pb-4 pl-3 mr-5 ml-4 rounded">kooker</h3>
       </div>
-
+      <div className='row'>
+        <div className='col'>
+          <div className="form-group ">
+            <label for="search-input">Search for recipes here</label>
+            <input class="form-control" id="search-input" placeholder="Recipes here"/>
+            <Link to={'/searchresults'}>
+            <button className="submit-search-btn btn btn-primary">Search!</button> 
+            </Link>
+          </div>
+        </div>
+      </div>
       <div className='row'>
         <div className='col'>
           <Link to={'/register'}>
@@ -42,6 +53,7 @@ export default class Homepage extends React.Component {
       <Route path="/register" component={RegisterFormContainer}/>
       <Route path="/profile" component={ProfileContainer}/>
       <Route path="/login" component={LoginContainer}/>
+      <Route path="/searchresults" component={SearchResultsContainer}/>
 
     </div>
     </Router>
