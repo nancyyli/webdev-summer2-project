@@ -17,8 +17,7 @@ class Login extends React.Component {
           xfbml            : true,
           version          : 'v3.1'
         });
-
-        window.FB.Event.subscribe('auth.statusChange', this.handleFbLogin);
+        window.FB.Event.subscribe('auth.statusChange', this.props.fbLoggedIn);
     };
 
     (function(d, s, id){
@@ -28,10 +27,6 @@ class Login extends React.Component {
        js.src = "https://connect.facebook.net/en_US/sdk.js";
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
-  }
-
-  handleFbLogin = (response) => {
-    console.log(response);
   }
 
   render () {
@@ -53,11 +48,11 @@ class Login extends React.Component {
 }
 
 const dispatchToPropsMapper = dispatch => ({
-
+  fbLoggedIn: fbResponse => dispatch(actions.loginFacebook(fbResponse))
 })
 
 const stateToPropsMapper = state => ({
-  currentUser: state.currentUser,
+  user: state.user,
 })
 
 export const LoginContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Login);

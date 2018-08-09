@@ -1,4 +1,4 @@
-import * as constants from "constants/index"
+import * as constants from "store/actions/constants"
 
 const DEFAULT_STATE = {
   loggedIn: false,
@@ -6,8 +6,11 @@ const DEFAULT_STATE = {
 };
 
 const userReducer = (state = DEFAULT_STATE, action) => {
-  let newState;
   switch (action.type) {
+    case constants.APP_LOGIN_SUCCESS:
+      return { loggedIn: true, info: {} };
+    case constants.USER_DATA_FETCHED:
+      return { loggedIn: true, info: action.user };
     default:
       return state
   }
