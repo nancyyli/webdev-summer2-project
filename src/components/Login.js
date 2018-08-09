@@ -6,23 +6,12 @@ import * as actions from 'store/actions';
 
 class Login extends React.Component {
   componentDidMount () {
-    window.fbAsyncInit = () => {
-        window.FB.init({
-          appId            : '1734361039950244',
-          autoLogAppEvents : true,
-          xfbml            : true,
-          version          : 'v3.1'
-        });
-        window.FB.Event.subscribe('auth.statusChange', this.props.fbLoggedIn);
-    };
+    this.refreshFacebook();
+  }
 
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "https://connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
+  refreshFacebook = () => {
+    window.FB.XFBML.parse();
+    window.FB.Event.subscribe('auth.statusChange', this.props.fbLoggedIn);
   }
 
   render () {
@@ -51,4 +40,4 @@ const stateToPropsMapper = state => ({
   user: state.user,
 })
 
-export const LoginContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Login);
+export default connect(stateToPropsMapper, dispatchToPropsMapper)(Login);
