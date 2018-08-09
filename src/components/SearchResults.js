@@ -1,7 +1,7 @@
 import React from 'react';
-import * as actions from 'store/actions';
-import {connect} from 'react-redux';
-import {Link, Route} from 'react-router-dom';
+//import * as actions from 'store/actions';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 //TODO change the link to searchresults/detail/resultId or something
 export const SearchResults = (currentUser) => {

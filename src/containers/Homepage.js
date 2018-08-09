@@ -1,13 +1,14 @@
 import React from 'react';
-import {Link, Route} from 'react-router-dom';
-import {RegisterFormContainer} from '../components/RegisterForm'
-import {ProfileContainer} from '../components/Profile'
-import {LoginContainer} from '../components/Login'
-import {BrowserRouter as Router} from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
-import '../styles/Homepage.css';
-import { SearchResultsContainer } from '../components/SearchResults';
-import { SearchResultDetailsContainer } from '../components/SearchResultDetails';
+import { ProfileContainer } from 'components/Profile'
+import { LoginContainer } from 'components/Login'
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import { SearchResultsContainer } from 'components/SearchResults';
+import { SearchResultDetailsContainer } from 'components/SearchResultDetails';
+
+import 'styles/Homepage.css';
 
 class Homepage extends React.Component {
   render() {
@@ -45,7 +46,6 @@ class Homepage extends React.Component {
           </Link>
         </div>
       </div>
-      <Route path="/register" component={RegisterFormContainer}/>
       <Route path="/profile" component={ProfileContainer}/>
       <Route path="/login" component={LoginContainer}/>
       <Route path="/searchresults" component={SearchResultsContainer}/>

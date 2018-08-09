@@ -1,7 +1,7 @@
 import React from 'react';
-import * as actions from 'store/actions';
+//import * as actions from 'store/actions';
 import {connect} from 'react-redux';
-import {Link, Route} from 'react-router-dom';
+//import {Link, Route} from 'react-router-dom';
 
 export const SearchResultDetails = (currentUser) => {
   return (<div class="container-fluid mt-5 mb-5">

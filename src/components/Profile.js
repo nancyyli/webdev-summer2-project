@@ -1,5 +1,5 @@
 import React from 'react';
-import * as actions from 'store/actions';
+//import * as actions from 'store/actions';
 import {connect} from 'react-redux';
 
 export const Profile = (currentUser) => {

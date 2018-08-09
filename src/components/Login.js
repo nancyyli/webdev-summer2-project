@@ -5,10 +5,6 @@ import * as actions from 'store/actions';
 
 
 class Login extends React.Component {
-  constructor (props) {
-    super(props);
-  }
-
   componentDidMount () {
     window.fbAsyncInit = () => {
         window.FB.init({
