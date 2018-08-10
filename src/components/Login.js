@@ -9,7 +9,7 @@ class Login extends React.Component {
     this.refreshFacebook();
   }
 
-  refreshFacebook = () => {
+  refreshFacebook (){
     window.FB.XFBML.parse();
     window.FB.Event.subscribe('auth.statusChange', this.props.fbLoggedIn);
   }
@@ -34,10 +34,10 @@ class Login extends React.Component {
 
 const dispatchToPropsMapper = dispatch => ({
   fbLoggedIn: fbResponse => dispatch(actions.loginFacebook(fbResponse))
-})
+});
 
 const stateToPropsMapper = state => ({
   user: state.user,
-})
+});
 
 export default connect(stateToPropsMapper, dispatchToPropsMapper)(Login);

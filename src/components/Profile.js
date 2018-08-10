@@ -1,88 +1,91 @@
 import React from 'react';
 //import * as actions from 'store/actions';
 import {connect} from 'react-redux';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
+import Icon from '@material-ui/core/Icon';
+import Alarm from '@material-ui/icons/Alarm';
+import Email from '@material-ui/icons/Email';
+import Contacts from '@material-ui/icons/Contacts';
 
-export const Profile = (currentUser) => {
+const styles = {
+  largeIcon: {
+    width: 200,
+    height: 200,
+    border: '3px solid grey'
+  },
+  followers: {
+    margin: 8
+  }
+};
+const currentDate = Date();
+
+export const Profile = ({currentUser}) => {
   return (<div className="container-fluid mt-5 mb-5">
     <div className="row">
-      <div className='col'>
+      <div className='col-1'>
         &nbsp;
       </div>
-      <div className='col-7'>
-        <h1 className='display-3'>Profile</h1>
-        <div className="form-group row">
-          <label htmlFor="emailFld" className="col-lg-2 col-form-label">Email</label>
-          <div className="col-lg-10">
-            <input type="text" readOnly className="form-control-plaintext" value={currentUser.currentUser.email}/>
+      <div className='col-2 ml-3'>
+        <Avatar style={styles.largeIcon} src="https://bootdey.com/img/Content/avatar/avatar6.png"/>
+        <Typography className="mt-4" variant="headline">{currentUser.name}</Typography>
+        <Typography variant="body1">@username</Typography>
+        <Typography className="mt-2" variant="caption">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam quis quam. Maecenas ipsum velit, consectetuer eu lobortis ut,
+        </Typography>
+        <div className="row mt-2">
+          <div className='col-1'>
+            <Icon>
+              <Alarm/>
+            </Icon>
+          </div>
+          <div className='col-10 mt-2 ml-1'>
+            <Typography variant="caption">
+              {currentDate}</Typography>
           </div>
         </div>
-        <div className="form-group row">
-          <label htmlFor="usernameFld" className="col-lg-2 col-form-label">Username</label>
-          <div className="col-lg-10">
-            <input type="text" className="form-control" value={currentUser.currentUser.username}/>
+        <div className="row mt-2">
+          <div className='col-1'>
+            <Icon>
+              <Email/>
+            </Icon>
+          </div>
+          <div className='col-10 mt-3 ml-1'>
+            <Typography variant="caption">
+              user@gmail.com</Typography>
           </div>
         </div>
-        <div className="form-group row">
-          <label htmlFor="passwordFld" className="col-lg-2 col-form-label">Password</label>
-          <div className="col-lg-10">
-            <input type="password" className="form-control" value={currentUser.currentUser.password}/>
+        <div className="row mt-2">
+          <div className='col-1'>
+            <Icon>
+              <Contacts/>
+            </Icon>
+          </div>
+          <div className='col-10 mt-3 ml-1'>
+            <Typography variant="caption">
+              x number of friends on Kooker</Typography>
           </div>
         </div>
-        <div className="form-group row">
-          <label htmlFor="firstNameFld" className="col-lg-2 col-form-label">
-            First Name
-          </label>
-          <div className="col-lg-10">
-            <input type="text" className="form-control" value={currentUser.currentUser.firstName}/>
+        <div className="row mt-3">
+          <div className="form-inline ml-2">
+            <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png"/>
+            <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png"/>
+            <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png"/>
+            <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png"/>
+            <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png"/>
+            <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png"/>
+            <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png"/>
+            <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png"/>
           </div>
         </div>
-        <div className="form-group row">
-          <label htmlFor="lastNameFld" className="col-lg-2 col-form-label">
-            Last Name
-          </label>
-          <div className="col-lg-10">
-            <input type="text" className="form-control" value={currentUser.currentUser.lastName}/>
-          </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="phoneFld" className="col-lg-2 col-form-label">
-            Phone
-          </label>
-          <div className="col-lg-10">
-            <input className="form-control" readOnly placeholder="phone" value='{{currentUser.phone}}'/>
-          </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="dateOfBirthFld" className="col-lg-2 col-form-label">
-            Date of Birth</label>
-          <div className="col-lg-10">
-            <input className="form-control" readOnly value='{{currentUser.dateOfBirth}}'/>
-          </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="role" className="col-lg-2 col-form-label">Role</label>
-          <div className="col-lg-10">
-            <input type="text" readOnly className="form-control-plaintext" value='{{currentUser.role}}'/>
-          </div>
-        </div>
-        <div className="buttons">
-          <button id="updateBtn" type="button" className="btn btn-success btn-block">Update</button>
-          <button id="logoutBtn" type="button" className="btn btn-danger btn-block">Log out</button>
-        </div>
-      </div>
-      <div className='col'>
-        &nbsp;
       </div>
     </div>
   </div>);
+
 };
+/* PLEASE DYNAMICALLY RENDER AVATAR FOLLOWERS */
 
-const dispatchToPropsMapper = dispatch => ({
+const dispatchToPropsMapper = dispatch => ({})
 
-})
-
-const stateToPropsMapper = state => ({
-  currentUser: state.user.info,
-})
+const stateToPropsMapper = state => ({currentUser: state.user.info})
 
 export const ProfileContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Profile);

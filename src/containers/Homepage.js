@@ -27,7 +27,7 @@ class Homepage extends React.Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/login' component={Login} />
-          <Route path='/profile' component={ProfileContainer} />
+          <Route path='/profile' render={() => <ProfileContainer user={this.props.user} />} />
         </Switch>
       </div>
     );
