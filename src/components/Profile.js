@@ -1,12 +1,10 @@
 import React from 'react';
 //import * as actions from 'store/actions';
 import {connect} from 'react-redux';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
-import Icon from '@material-ui/core/Icon';
-import Alarm from '@material-ui/icons/Alarm';
-import Email from '@material-ui/icons/Email';
-import Contacts from '@material-ui/icons/Contacts';
+import {Avatar, BottomNavigation, BottomNavigationAction, Typography, Icon}
+from '@material-ui/core';
+
+import {Alarm, Email, Contacts, Subject, SettingsSharp} from '@material-ui/icons';
 
 const styles = {
   largeIcon: {
@@ -16,6 +14,14 @@ const styles = {
   },
   followers: {
     margin: 8
+  },
+  bottom_nav: {
+    color: 'white',
+    background: '#f04d22'
+  },
+  bottom_nav_action: {
+    outline: 'none',
+    color: 'white',
   }
 };
 const currentDate = Date();
@@ -26,7 +32,7 @@ export const Profile = ({currentUser}) => {
       <div className='col-1'>
         &nbsp;
       </div>
-      <div className='col-2 ml-3'>
+      <div className='col-2'>
         <Avatar style={styles.largeIcon} src="https://bootdey.com/img/Content/avatar/avatar6.png"/>
         <Typography className="mt-4" variant="headline">{currentUser.name}</Typography>
         <Typography variant="body1">@username</Typography>
@@ -77,6 +83,26 @@ export const Profile = ({currentUser}) => {
             <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png"/>
           </div>
         </div>
+      </div>
+      <div className='col-8'>
+        <div className='row mb-5'>
+          <div className='col mb-5'>
+            &nbsp;
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <BottomNavigation className="rounded" style={styles.bottom_nav}>
+              <BottomNavigationAction showLabel={true} label="Recipes"
+                style={styles.bottom_nav_action} icon={<Icon><Subject/></Icon>}/>
+              <BottomNavigationAction showLabel={true} label="Friends"
+                style={styles.bottom_nav_action} icon={<Icon><Contacts/></Icon>}/>
+              <BottomNavigationAction showLabel={true} label="Settings"
+                style={styles.bottom_nav_action} icon={<Icon><SettingsSharp/></Icon>}/>
+            </BottomNavigation>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>);
