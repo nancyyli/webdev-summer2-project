@@ -9,8 +9,8 @@ import { ProfileContainer } from 'components/Profile';
 import Home from 'components/Home';
 import Login from 'components/Login';
 
-import { SearchResultsContainer } from 'components/SearchResults';
-import { SearchResultDetailsContainer } from 'components/SearchResultDetails';
+// import { SearchResultsContainer } from 'components/SearchResults';
+// import { SearchResultDetailsContainer } from 'components/SearchResultDetails';
 
 import 'styles/Homepage.css';
 
@@ -18,7 +18,7 @@ import 'styles/Homepage.css';
 class Homepage extends React.Component {
   render() {
     return (
-      <div>
+      <div className="bg-light">
         <div>
           {this.props.loggedIn ?
             <HeaderLoggedIn user={this.props.user} /> :
