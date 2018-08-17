@@ -29,6 +29,9 @@ const styles = {
   },
   link: {
     textDecoration: 'none'
+  },
+  icon: {
+    color: '#f04d22'
   }
 };
 const currentDate = Date();
@@ -46,8 +49,8 @@ export const Profile = ({ currentUser }) => {
         </Typography>
           <div className="row mt-2">
             <div className='col-xl-1'>
-              <Icon>
-                <Alarm />
+              <Icon >
+                <Alarm style={styles.icon}/>
               </Icon>
             </div>
             <div className='col-xl-10 mt-2 ml-1'>
@@ -58,7 +61,7 @@ export const Profile = ({ currentUser }) => {
           <div className="row mt-2">
             <div className='col-xl-1'>
               <Icon>
-                <Email />
+                <Email style={styles.icon}/>
               </Icon>
             </div>
             <div className='col-xl-10 mt-3 ml-1'>
@@ -69,7 +72,7 @@ export const Profile = ({ currentUser }) => {
           <div className="row mt-2">
             <div className='col-xl-1'>
               <Icon>
-                <Contacts />
+                <Contacts style={styles.icon} />
               </Icon>
             </div>
             <div className='col-xl-10 mt-3 ml-1'>
