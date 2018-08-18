@@ -36,9 +36,6 @@ class HeaderLoggedOut extends React.Component {
             <Typography variant="title" color="inherit" style={{ flex: 1 }}>
               Kooker
             </Typography>
-            <IconButton component={Link} to='/' color='inherit'>
-              <Home />
-            </IconButton>
             <Button color="inherit" onClick={this.handleLoginOpen}>
               Login
             </Button>
