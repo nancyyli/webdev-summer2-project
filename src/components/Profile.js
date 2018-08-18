@@ -36,12 +36,14 @@ const styles = {
 };
 const currentDate = Date();
 
+
 export const Profile = ({ currentUser }) => {
+  const profilePicUrl = "/api/user/" + currentUser.id + "/picture.jpg";
   return (<div className="container-fluid mt-5 mb-5">
     <div className="row">
       <div className='col-xl-2 offset-md-1'>
         <div className='col-xl'>
-          <Avatar style={styles.largeIcon} src="https://bootdey.com/img/Content/avatar/avatar6.png" />
+          <Avatar style={styles.largeIcon} src={profilePicUrl} />
           <Typography className="mt-4" variant="headline">{currentUser.name}</Typography>
           <Typography variant="body1">@username</Typography>
           <Typography className="mt-2" variant="caption">
