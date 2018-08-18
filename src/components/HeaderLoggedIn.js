@@ -40,19 +40,19 @@ const HeaderLoggedIn = ({ user }) => {
           <Typography className="mr-5" variant="title" style={styles.appText}>
             Kooker
           </Typography>
-          <Link className="mt-1 mr-3"  to='/' style={styles.link}>
+          <Link className="mt-1 mr-3"  to='/profile/recipes'  style={styles.link}>
             <Typography variant="subheading" style={styles.appText}>
-              Home
-            </Typography>
-          </Link>
-          <Link className="mt-1 mr-3"  to='/' style={styles.link}>
-            <Typography variant="subheading" style={styles.appText}>
-              About
+              Feed
             </Typography>
           </Link>
           <Link className="mt-1 mr-3"  to='/' style={styles.link}>
             <Typography variant="subheading" style={styles.appText}>
               Explore
+            </Typography>
+          </Link>
+          <Link className="mt-1 mr-3"  to='/' style={styles.link}>
+            <Typography variant="subheading" style={styles.appText}>
+              About
             </Typography>
           </Link>
         </div>
