@@ -101,9 +101,12 @@ class HeaderLoggedIn extends React.Component {
                       <Link to='/profile/recipes' style={styles.link}>
                         <MenuItem onClick={this.handleClose}>Profile</MenuItem>
                       </Link>
-                      <Link to='/' style={styles.link}>
-                        <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                      </Link>
+                      {(this.props.currentUser.role === 'ADMIN') ?
+                        <Link to='/admin' style={styles.link}>
+                          <MenuItem onClick={this.handleClose}>Admin Tools</MenuItem>
+                        </Link> :
+                        null}
+
                       <Link to='/' style={styles.link}>
                         <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                       </Link>
@@ -124,6 +127,8 @@ const dispatchToPropsMapper = dispatch => ({
   logout: history => dispatch(logout(history))
 });
 
-const stateToPropsMapper = state => ({});
+const stateToPropsMapper = state => ({
+  currentUser: state.user.info
+});
 
 export default connect(stateToPropsMapper, dispatchToPropsMapper)(withRouter(HeaderLoggedIn));

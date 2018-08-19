@@ -11,6 +11,7 @@ import Home from 'components/Home';
 import Login from 'components/Login';
 import SearchLayout from './SearchLayout';
 import RecipeDetailLayout from './RecipeDetailLayout';
+import AdminLayout from './AdminLayout';
 import 'styles/Homepage.css';
 
 class Homepage extends React.Component {
@@ -27,6 +28,7 @@ class Homepage extends React.Component {
                 <Route path='/profile/recipes/:recipeId' component={RecipeDetailLayout} />
                 <Route path='/profile/recipes' render={() => <ProfileContainer user={this.props.user} />} />
                 <Route path='/explore' component={SearchLayout} />
+                <Route path='/admin' component={AdminLayout} />
               </Switch>
             </div> :
             <div>
