@@ -15,14 +15,17 @@ const roles = [
         value: 'user',
         label: 'Kooker User'
     },
+    {
+        value: 'admin',
+        label: 'Admin'
+    }
 ];
 
 class RegisterForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: '',
-            lastName: '',
+            name: '',
             password: '',
             password2: '',
             email: '',
@@ -40,25 +43,16 @@ class RegisterForm extends React.Component {
         return (<div>
 
             <div className='row'>
-                <div className='col'>
+                <div className='col-12'>
                     <TextField
-                        id="firstName"
-                        label="First Name"
+                        id="name"
+                        label="Name"
                         className=''
-                        value={this.state.firstName}
-                        onChange={this.handleChange('firstName')}
+                        value={this.state.name}
+                        onChange={this.handleChange('name')}
                         margin="normal"
-                        required="true"
-                    />
-                </div>
-                <div className='col'>
-                    <TextField
-                        id="lastName"
-                        label="Last Name"
-                        className=''
-                        value={this.state.lastName}
-                        onChange={this.handleChange('lastName')}
-                        margin="normal"
+                        fullWidth={true}
+                        required={true}
                     />
                 </div>
             </div>
@@ -71,7 +65,7 @@ class RegisterForm extends React.Component {
                         value={this.state.password}
                         onChange={this.handleChange('password')}
                         autoComplete="current-password"
-                        required="true"
+                        required={true}
                         margin="normal"
                     />
                 </div>
@@ -83,7 +77,7 @@ class RegisterForm extends React.Component {
                         value={this.state.password2}
                         onChange={this.handleChange('password2')}
                         autoComplete="current-password"
-                        required="true"
+                        required={true}
                         margin="normal"
                     />
                 </div>
@@ -96,7 +90,7 @@ class RegisterForm extends React.Component {
                         className=''
                         value={this.state.email}
                         onChange={this.handleChange('email')}
-                        require='true'
+                        required={true}
                         margin="normal"
                     />
                 </div>
@@ -108,7 +102,7 @@ class RegisterForm extends React.Component {
                         value={this.state.role}
                         onChange={this.handleChange('role')}
                         margin="normal"
-                        fullWidth='true'
+                        fullWidth={true}
                     >
                         {roles.map(option => (
                             <MenuItem key={option.value} value={option.value}>
@@ -123,7 +117,7 @@ class RegisterForm extends React.Component {
                     &nbsp;
                 </div>
                 <div className='col-8'>
-                    <Button variant="contained" color="primary" fullWidth='true'>
+                    <Button variant="contained" color="primary" fullWidth={true}>
                         Sign up
                     </Button>
                 </div>

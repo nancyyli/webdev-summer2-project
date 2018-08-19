@@ -50,3 +50,12 @@ export const getRecipes = () => {
     })
   }
 };
+
+export const logout = (history) => {
+  return dispatch => {
+    axios.post('/logout').then(() => {
+      dispatch({ type: constants.LOGGED_OUT });
+      history.push('/');
+    });
+  };
+};

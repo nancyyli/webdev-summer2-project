@@ -1,24 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { Link, withRouter } from 'react-router-dom';
 
-import { AppBar, Toolbar, Typography, IconButton, Button } from '@material-ui/core';
+import {
+  AppBar, Toolbar, Typography, IconButton, MenuItem, MenuList, Popper, Paper,
+  Grow, ClickAwayListener
+} from '@material-ui/core';
+
 import { AccountCircle, Home } from '@material-ui/icons';
-import { ProfileContainer } from './Profile';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import SwipeableViews from 'react-swipeable-views';
-import { withStyles } from '@material-ui/core/styles';
-// import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-// import Typography from '@material-ui/core/Typography';
-import Zoom from '@material-ui/core/Zoom';
-// import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
-import UpIcon from '@material-ui/icons/KeyboardArrowUp';
-import green from '@material-ui/core/colors/green';
+
+import { logout } from 'store/actions';
 
 
 const styles = {
@@ -27,44 +19,111 @@ const styles = {
   },
   link: {
     textDecoration: 'none',
+    outline: 'none'
   },
   icon: {
     outline: 'none',
   }
 };
-const HeaderLoggedIn = ({ user }) => {
-  return (
-    <AppBar position="static">
-      <Toolbar variant="regular" className='d-flex justify-content-between'>
-        <div className="form-inline">
-          <Typography className="mr-5" variant="title" style={styles.appText}>
-            Kooker
-          </Typography>
-          <Link className="mt-1 mr-3"  to='/profile/recipes'  style={styles.link}>
-            <Typography variant="subheading" style={styles.appText}>
-              Feed
+
+class HeaderLoggedIn extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
+
+    this.state = {
+      open: false,
+    };
+  }
+
+  handleToggle() {
+    this.setState({
+      open: !this.state.open
+    });
+  };
+
+  handleClose(event) {
+    if (this.anchorEl.contains(event.target)) {
+      return;
+    }
+  }
+
+  handleLogout = () => {
+    this.props.logout(this.props.history);
+  }
+
+  render() {
+    return (
+      <AppBar position="static">
+        <Toolbar variant="regular" className='d-flex justify-content-between'>
+          <div className="form-inline">
+            <Typography className="mr-5" variant="title" style={styles.appText}>
+              Kooker
             </Typography>
-          </Link>
-          <Link className="mt-1 mr-3"  to='/' style={styles.link}>
-            <Typography variant="subheading" style={styles.appText}>
-              Explore
-            </Typography>
-          </Link>
-          <Link className="mt-1 mr-3"  to='/' style={styles.link}>
-            <Typography variant="subheading" style={styles.appText}>
-              About
-            </Typography>
-          </Link>
-        </div>
-        <Link to='/profile/recipes' style={styles.link}>
-          <IconButton styles={styles.icon} >
-            <AccountCircle />
+            <Link className="mt-1 mr-3" to='/profile/recipes' style={styles.link}>
+              <Typography variant="subheading" style={styles.appText}>
+                Feed
+              </Typography>
+            </Link>
+            <Link className="mt-1 mr-3" to='/' style={styles.link}>
+              <Typography variant="subheading" style={styles.appText}>
+                Explore
+              </Typography>
+            </Link>
+            <Link className="mt-1 mr-3" to='/' style={styles.link}>
+              <Typography variant="subheading" style={styles.appText}>
+                About
+              </Typography>
+            </Link>
+          </div>
+          <IconButton
+            style={styles.icon}
+            onClick={this.handleToggle}
+            buttonRef={node => {
+              this.anchorEl = node;
+            }}
+            aria-owns={this.state.open ? 'menu-list-grow' : null}
+            aria-haspopup="true" >
+            <AccountCircle
+            />
           </IconButton>
-        </Link>
-      </Toolbar>
-    </AppBar>
+          <Popper open={this.state.open} anchorEl={this.anchorEl} transition disablePortal>
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                id="menu-list-grow"
+                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+              >
+                <Paper>
+                  <ClickAwayListener onClickAway={this.handleClose}>
+                    <MenuList>
+                      <Link to='/profile/recipes' style={styles.link}>
+                        <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                      </Link>
+                      <Link to='/' style={styles.link}>
+                        <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                      </Link>
+                      <Link to='/' style={styles.link}>
+                        <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
+                      </Link>
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+        </Toolbar>
+      </AppBar>
 
-  );
-};
+    );
+  }
+}
 
-export default withRouter(HeaderLoggedIn);
+const dispatchToPropsMapper = dispatch => ({
+  logout: history => dispatch(logout(history))
+});
+
+const stateToPropsMapper = state => ({});
+
+export default connect(stateToPropsMapper, dispatchToPropsMapper)(withRouter(HeaderLoggedIn));
