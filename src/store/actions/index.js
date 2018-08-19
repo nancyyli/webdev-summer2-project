@@ -5,7 +5,7 @@ import * as constants from "store/actions/constants";
 
 export const queryLoginStatus = () => {
   return dispatch => {
-    axios.get('/api/user/me').then(
+    axios.get('/api/user/1').then(
       response => {
         dispatch({ type: constants.FACEBOOK_LOGIN_SUCCESS });
         dispatch({ type: constants.USER_DATA_FETCHED, user: response.data });
@@ -18,7 +18,7 @@ export const queryLoginStatus = () => {
 
 export const getUserData = () => {
   return dispatch => {
-    axios.get('/api/user/me').then(response => {
+    axios.get('/api/user/1').then(response => {
       dispatch({ type: constants.USER_DATA_FETCHED, user: response.data });
     });
   };
@@ -40,4 +40,13 @@ export const loginFacebook = (fbResponse) => {
       dispatch(getUserData());
     });
   };
+
+};
+
+export const getRecipes = () => {
+  return dispatch => {
+    axios('/api/recipe').then(response => {
+      dispatch( { type: constants.GET_RECIPES, recipe: response.data});
+    })
+  }
 };

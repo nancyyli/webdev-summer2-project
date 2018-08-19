@@ -18,6 +18,7 @@ const styles = {
 };
 
 class RecipeCard extends React.Component {
+  
   constructor(props) {
     super(props);
     this.handleClose = this.handleClose.bind(this);
@@ -25,6 +26,11 @@ class RecipeCard extends React.Component {
       open: false,
       scroll: 'paper',
     };
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.props = newProps;
+    console.log(newProps);
   }
 
   handleClickOpen(scroll) {
@@ -51,7 +57,7 @@ class RecipeCard extends React.Component {
             <CardHeader
               avatar={
                 <Avatar aria-label="Recipe" >
-                  EH
+                  {this.props.recipe.author.name || ''}
               </Avatar>
               }
               action={
@@ -59,7 +65,7 @@ class RecipeCard extends React.Component {
                   <MoreVert />
                 </IconButton>
               }
-              title="Shrimp and Chorizo Paella"
+              title={this.props.recipe.title || ''}
               subheader="August 16, 2018"
             />
             <CardMedia
