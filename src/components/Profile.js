@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import { Avatar, BottomNavigation, BottomNavigationAction, Typography, Icon }
   from '@material-ui/core';
 
+import format from 'date-fns/format';
+
 import { Alarm, Email, Contacts, Subject, SettingsSharp } from '@material-ui/icons';
 import RecipeList from '../containers/RecipeList';
 
@@ -34,7 +36,6 @@ const styles = {
     color: '#f04d22'
   }
 };
-const currentDate = Date();
 
 
 export const Profile = ({ currentUser }) => {
@@ -45,11 +46,6 @@ export const Profile = ({ currentUser }) => {
         <div className='col-xl'>
           <Avatar style={styles.largeIcon} src={profilePicUrl} />
           <Typography className="mt-4" variant="headline">{currentUser.name}</Typography>
-          <Typography variant="body1">@username</Typography>
-          <Typography className="mt-2" variant="caption">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam quis quam. Maecenas 
-            ipsum velit, consectetuer eu lobortis ut,
-        </Typography>
           <div className="row mt-2">
             <div className='col-xl-1'>
               <Icon >
@@ -58,7 +54,8 @@ export const Profile = ({ currentUser }) => {
             </div>
             <div className='col-xl-10 mt-2 ml-1'>
               <Typography variant="caption">
-                {currentDate}</Typography>
+                {format(new Date(currentUser.joined), "MMM D, YYYY")}
+              </Typography>
             </div>
           </div>
           <div className="row mt-2">
@@ -69,7 +66,8 @@ export const Profile = ({ currentUser }) => {
             </div>
             <div className='col-xl-10 mt-3 ml-1'>
               <Typography variant="caption">
-                user@gmail.com</Typography>
+                {currentUser.email}
+              </Typography>
             </div>
           </div>
           <div className="row mt-2">
