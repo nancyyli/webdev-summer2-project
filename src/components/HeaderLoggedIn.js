@@ -61,17 +61,17 @@ class HeaderLoggedIn extends React.Component {
             <Typography className="mr-5" variant="title" style={styles.appText}>
               Kooker
             </Typography>
-            <Link className="mt-1 mr-3" to='/profile/recipes' style={styles.link}>
+            <Link className="mt-1 mr-4 ml-3" to='/profile/recipes' style={styles.link}>
               <Typography variant="subheading" style={styles.appText}>
-                Feed
+                Home
               </Typography>
             </Link>
-            <Link className="mt-1 mr-3" to='/' style={styles.link}>
+            <Link className="mt-1 mr-4" to='/explore' style={styles.link}>
               <Typography variant="subheading" style={styles.appText}>
                 Explore
               </Typography>
             </Link>
-            <Link className="mt-1 mr-3" to='/' style={styles.link}>
+            <Link className="mt-1 mr-4" to='/' style={styles.link}>
               <Typography variant="subheading" style={styles.appText}>
                 About
               </Typography>

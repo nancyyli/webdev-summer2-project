@@ -30,10 +30,9 @@ class RecipeList extends React.Component {
             <div className='row mt-4'>
                 <div className='col-xl'>
                     <Typography variant='display1'>Recipes</Typography>
-                </div>
-                {/* <RecipeCard recipe={this.props.recipes.recipe}/> */}
                 {this.props.recipes.list.map(recipe => (
                 <RecipeCard recipe={recipe}/>))}
+                </div>
             </div>
         );
 

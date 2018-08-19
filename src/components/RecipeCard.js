@@ -8,9 +8,13 @@ import { MoreVert, FavoriteIcon, ShareIcon, ExpandMoreIcon } from '@material-ui/
 
 
 const styles = {
+  img: {
+      width: 'calc(100%/4)',
+  },
   cardMedia: {
-    width: '600px',
-    height: '60% !important',
+    width: '100%',
+    height: '15vw',
+    objectFit: 'cover',
   },
   button: {
     outline: 'none',
@@ -71,7 +75,7 @@ class RecipeCard extends React.Component {
             <CardMedia
               style={styles.cardMedia}
               component="img"
-              src={this.props.recipe.image}
+              src={this.props.recipe.image}            
             />
             <CardContent>
               <Typography component="p">
