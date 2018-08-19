@@ -126,12 +126,48 @@ export const searchRecipeByTitle = (title) => {
 }
 
 export const searchRecipeByAuthor = (authorName) => {
-  return;
+  var users;
+  return dispatch => { axios('/api/user/').then(response => {
+    users = response.data;
+    users.map (user => {
+      if (user.name == authorName) {
+        axios.get('/api/recipe/', {
+          params: {
+            author: user.id
+          }
+        }).then(response => {
+          dispatch({ type: constants.SEARCH_RECIPE_AUTHOR, recipe: response.data});
+        })
+      }
+    })
+    dispatch( {type: constants.SEARCH_RECIPE_AUTHOR, recipe: [] })
+  })}
 }
 
 export const searchRecipeByIngredient = (ingredientName) => {
-  return;
+  var ingredients; 
+  var recipes;
+  return dispatch => {axios.get('/api/ingredient/',{
+    params: {
+       search: ingredientName
+    }
+  }).then(response => {
+    ingredients = response.data
+    ingredients.map(ingredient => {
+      axios.get('/api/recipe', {
+        params: {
+          ingredient: ingredient.id
+        }
+      }).then(response => {
+          recipes = response.data
+          dispatch({ type: constants.SEARCH_RECIPE_INGREDIENT, recipe: recipes});
+      })
+    })
+    });
+  }
+
 }
+
 export const updateProfile = (updates = { email: "", name: "", role: "" }) => {
   return dispatch => {
     axios.put('/api/user/me', updates).then((response) => {
