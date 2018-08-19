@@ -64,6 +64,16 @@ export const login = (credentials = {username: "", password: ""}) => {
   };
 };
 
+export const register = (registration = { email: "", password: "", name: "", role: "" }) => {
+  return dispatch => {
+    axios.post('/register', registration).then(() => {
+      dispatch({ type: constants.USER_REGISTERED });
+      dispatch({ type: constants.APP_LOGIN_SUCCESS });
+      dispatch(getUserData());
+    })
+  };
+};
+
 export const logout = (history) => {
   return dispatch => {
     axios.post('/logout').then(() => {

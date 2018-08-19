@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { TextField, MenuItem, Button } from '@material-ui/core';
+
+import { register } from 'store/actions';
 
 
 const styles = {
@@ -8,15 +11,15 @@ const styles = {
 };
 const roles = [
     {
-        value: 'chef',
+        value: 'VERIFIED_CHEF',
         label: 'Verified Chef'
     },
     {
-        value: 'user',
+        value: 'DEFAULT',
         label: 'Kooker User'
     },
     {
-        value: 'admin',
+        value: 'ADMIN',
         label: 'Admin'
     }
 ];
@@ -29,7 +32,8 @@ class RegisterForm extends React.Component {
             password: '',
             password2: '',
             email: '',
-            role: ''
+            role: '',
+            error: false
         };
     }
 
@@ -37,7 +41,22 @@ class RegisterForm extends React.Component {
         this.setState({
             [name]: event.target.value
         });
-    };
+    }
+
+    doRegistration = () => {
+      if (this.state.password === '' || this.state.name === '' || this.state.email === '' || this.state.role === '' || this.state.password !== this.state.password2) {
+        this.setState({ error: true });
+        return;
+      }
+
+      const registration = {
+        email: this.state.email,
+        password: this.state.password,
+        name: this.state.name,
+        role: this.state.role
+      };
+      this.props.register(registration);
+    }
 
     render() {
         return (<div>
@@ -117,7 +136,7 @@ class RegisterForm extends React.Component {
                     &nbsp;
                 </div>
                 <div className='col-8'>
-                    <Button variant="contained" color="primary" fullWidth={true}>
+                    <Button variant="contained" color="primary" fullWidth={true} onClick={this.doRegistration}>
                         Sign up
                     </Button>
                 </div>
@@ -130,4 +149,12 @@ class RegisterForm extends React.Component {
     }
 };
 
-export default withRouter(RegisterForm);
+const stateToProps = state => ({
+
+});
+
+const actionsToProps = dispatch => ({
+  register: registration => dispatch(register(registration))
+});
+
+export default connect(stateToProps, actionsToProps)(withRouter(RegisterForm));
