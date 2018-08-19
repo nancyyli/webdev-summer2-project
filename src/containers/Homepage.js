@@ -9,6 +9,7 @@ import HeaderLoggedOut from 'components/HeaderLoggedOut';
 import { ProfileContainer } from 'components/Profile';
 import Home from 'components/Home';
 import Login from 'components/Login';
+import SearchLayout from './SearchLayout';
 import RecipeDetailLayout from './RecipeDetailLayout';
 import 'styles/Homepage.css';
 
@@ -25,6 +26,7 @@ class Homepage extends React.Component {
                 <Route exact path="/" render={() => <Redirect to='/profile/recipes' />} />
                 <Route path='/profile/recipes/:recipeId' component={RecipeDetailLayout} />
                 <Route path='/profile/recipes' render={() => <ProfileContainer user={this.props.user} />} />
+                <Route path='/explore' component={SearchLayout} />
               </Switch>
             </div> :
             <div>
