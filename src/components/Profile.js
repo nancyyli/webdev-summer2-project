@@ -61,7 +61,7 @@ export const Profile = ({ currentUser }) => {
             </div>
             <div className='col-xl-10 mt-2 ml-1'>
               <Typography variant="caption">
-                {format(new Date(currentUser.joined), "MMM D, YYYY")}
+                {format(new Date(currentUser.joined), 'MMM D, YYYY')}
               </Typography>
             </div>
           </div>
