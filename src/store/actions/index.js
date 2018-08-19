@@ -41,3 +41,12 @@ export const loginFacebook = (fbResponse) => {
     });
   };
 };
+
+export const logout = (history) => {
+  return dispatch => {
+    axios.post('/logout').then(() => {
+      dispatch({ type: constants.LOGGED_OUT });
+      history.push('/');
+    });
+  };
+};

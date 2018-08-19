@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { Link, withRouter } from 'react-router-dom';
 
@@ -8,6 +9,8 @@ import {
 } from '@material-ui/core';
 
 import { AccountCircle, Home } from '@material-ui/icons';
+
+import { logout } from 'store/actions';
 
 
 const styles = {
@@ -46,6 +49,10 @@ class HeaderLoggedIn extends React.Component {
     }
   }
 
+  handleLogout = () => {
+    this.props.logout(this.props.history);
+  }
+
   render() {
     return (
       <AppBar position="static">
@@ -78,7 +85,7 @@ class HeaderLoggedIn extends React.Component {
             }}
             aria-owns={this.state.open ? 'menu-list-grow' : null}
             aria-haspopup="true" >
-            <AccountCircle 
+            <AccountCircle
             />
           </IconButton>
           <Popper open={this.state.open} anchorEl={this.anchorEl} transition disablePortal>
@@ -98,7 +105,7 @@ class HeaderLoggedIn extends React.Component {
                         <MenuItem onClick={this.handleClose}>My account</MenuItem>
                       </Link>
                       <Link to='/' style={styles.link}>
-                        <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                        <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                       </Link>
                     </MenuList>
                   </ClickAwayListener>
@@ -113,4 +120,10 @@ class HeaderLoggedIn extends React.Component {
   }
 }
 
-export default withRouter(HeaderLoggedIn);
+const dispatchToPropsMapper = dispatch => ({
+  logout: history => dispatch(logout(history))
+});
+
+const stateToPropsMapper = state => ({});
+
+export default connect(stateToPropsMapper, dispatchToPropsMapper)(withRouter(HeaderLoggedIn));
