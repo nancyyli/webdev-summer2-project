@@ -38,7 +38,7 @@ const currentDate = Date();
 
 
 export const Profile = ({ currentUser }) => {
-  const profilePicUrl = "/api/user/" + currentUser.id + "/picture.jpg";
+  const profilePicUrl = '/api/user/' + currentUser.id + '/picture.jpg';
   return (<div className="container-fluid mt-5 mb-5">
     <div className="row">
       <div className='col-xl-2 offset-md-1'>
