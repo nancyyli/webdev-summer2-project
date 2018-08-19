@@ -2,12 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button, Typography }
+import { RecipeBody } from '../components/RecipeDetail/RecipeBody';
+import Ingredients from '../components/RecipeDetail/Ingredients';
+
+
+import { Paper, Typography }
     from '@material-ui/core';
 
-import { Alarm, Email, Contacts, Subject, SettingsSharp } from '@material-ui/icons';
 
-
+const styles = {
+    tomato: {
+        color: '#f04d22'
+    },
+    img: {
+        width: 'calc(100%/2)',
+        float: 'left',
+        marginTop: '5px',
+        marginLeft: '150px',
+    }
+};
 class RecipeDetailLayout extends React.Component {
     constructor(props) {
         super(props);
@@ -15,55 +28,79 @@ class RecipeDetailLayout extends React.Component {
 
     render() {
         return (
-            <Dialog
-                open={this.props.open}
-                onClose={() => this.props.close()}
-                scroll={this.props.scroll}
-                aria-labelledby="scroll-dialog-title"
-            >
-                <DialogTitle id="scroll-dialog-title">Paella</DialogTitle>
-                <DialogContent>
-                        <img  src="https://res.cloudinary.com/hksqkdlah/image/upload/s--l2y15uPK--/c_scale,f_auto,h_688,q_jpegmini:2,w_688/24617_sfs-paella-for-two-10"/>
-                    <DialogContentText>
-                        <Typography paragraph variant="title">
-                            Method:
-              </Typography>
-                        <Typography paragraph variant="body">
-                            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-                            minutes.
-              </Typography>
-                        <Typography paragraph variant="body">
-                            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-                            heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-                            browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
-                            chicken and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion,
-                            salt and pepper, and cook, stirring often until thickened and fragrant, about 10
-                            minutes. Add saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-              </Typography>
-                        <Typography paragraph variant="body">
-                            Add rice and stir very gently to distribute. Top with artichokes and peppers, and
-                            cook without stirring, until most of the liquid is absorbed, 15 to 18 minutes.
-                            Reduce heat to medium-low, add reserved shrimp and mussels, tucking them down into
-                            the rice, and cook again without stirring, until mussels have opened and rice is
-                            just tender, 5 to 7 minutes more. (Discard any mussels that don’t open.)
-              </Typography>
-                        <Typography variant="body">
-                            Set aside off of the heat to let rest for 10 minutes, and then serve.
-              </Typography>
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={() => this.props.close()}>
-                        Cancel
-          </Button>
-                    <Button onClick={() => this.props.close()}>
-                        Subscribe
-          </Button>
-                </DialogActions>
-            </Dialog>
+            <div className='row mt-5'>
+                <div className='col-10 offset-md-1 mt-3'>
+                    <Paper elevation='2' component='div' className='pt-5 pb-5 pl-5 pr-5'>
+                        <div className='row'>
+                            <div className='col'>
+                                <Typography variant="display2">
+                                    Shrimp and Chorizo Paella
+                                </Typography>
+                                <Typography className="mt-1" variant="caption">
+                                    <em>Published: {Date()}</em>
+                                </Typography>
+                                <Typography className="mt-3" variant="headline">
+                                    What is this Recipe?
+                                </Typography>
+                                <div className='row'>
+                                    <div className="col-8">
+                                        <Typography variant="body1" className='text-secondary'>
+                                            This impressive paella is a perfect party dish and a fun meal to cook together with
+                                           your guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                                         </Typography>
+                                    </div>
+
+                                    <div className='col'>
+                                        &nbsp;
+                                     </div>
+                                </div>
+                            </div>
+                            <div className='col'>
+                                <img style={styles.img} src="https://res.cloudinary.com/hksqkdlah/image/upload/s--l2y15uPK--/c_scale,f_auto,h_688,q_jpegmini:2,w_688/24617_sfs-paella-for-two-10" />
+                            </div>
+                        </div>
+                        <div className='row'>
+                        <div className='col-4'>
+                            <Ingredients /> 
+                        </div>
+                            <div className='col'>
+                                <RecipeBody />
+                            </div>
+                        </div>
+                    </Paper>
+                </div>
+            </div>
+
         );
     }
 }
+{/* <img src="https://res.cloudinary.com/hksqkdlah/image/upload/s--l2y15uPK--/c_scale,f_auto,h_688,q_jpegmini:2,w_688/24617_sfs-paella-for-two-10" />
+
+<Typography paragraph variant="title">
+    Method:
+  </Typography>
+<Typography paragraph variant="body">
+    Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
+    minutes.
+  </Typography>
+<Typography paragraph variant="body">
+    Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
+    heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
+    browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
+    chicken and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion,
+    salt and pepper, and cook, stirring often until thickened and fragrant, about 10
+    minutes. Add saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+  </Typography>
+<Typography paragraph variant="body">
+    Add rice and stir very gently to distribute. Top with artichokes and peppers, and
+    cook without stirring, until most of the liquid is absorbed, 15 to 18 minutes.
+    Reduce heat to medium-low, add reserved shrimp and mussels, tucking them down into
+    the rice, and cook again without stirring, until mussels have opened and rice is
+    just tender, 5 to 7 minutes more. (Discard any mussels that don’t open.)
+  </Typography>
+<Typography variant="body">
+    Set aside off of the heat to let rest for 10 minutes, and then serve.
+  </Typography> */}
 RecipeDetailLayout.propTypes = {
     open: PropTypes.bool,
     close: PropTypes.func,
