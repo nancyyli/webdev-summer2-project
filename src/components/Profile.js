@@ -113,12 +113,6 @@ export const Profile = ({ currentUser }) => {
             <FeedNav />
           </div>
         </div>
-        <Route path="/profile/recipes" component={RecipeList}></Route>
-        <Route path="/profile/recipes/create" component={CreateLayout}></Route>
-        <Route path="/profile/friends" component={FriendsLayout}></Route>
-        <Route path="/profile/settings" component={SettingsLayout}></Route>
-
-
       </div>
     </div>
   </div>);

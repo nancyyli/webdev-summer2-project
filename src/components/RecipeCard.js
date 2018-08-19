@@ -47,7 +47,7 @@ class RecipeCard extends React.Component {
 
   render() {
     return (
-      <div className='row mt-3 bg-light pt-5 pb-5 mr-1 ml-1 rounded'>
+      <div className='row mt-2 bg-light pt-5 pb-5 mr-1 ml-1 rounded'>
         <div className='col'>
           &nbsp;
     </div>
