@@ -85,6 +85,15 @@ export const register = (registration = { email: "", password: "", name: "", rol
   };
 };
 
+export const updateProfile = (updates = { email: "", name: "", role: "" }) => {
+  return dispatch => {
+    axios.put('/api/user/me', updates).then((response) => {
+      dispatch({ type: constants.PROFILE_UPDATED });
+      dispatch({ type: constants.USER_DATA_FETCHED, user: response.data });
+    });
+  };
+};
+
 export const getRecipeById = (id) => {
   return dispatch => {
     axios('/api/recipe/' + id).then(response => {

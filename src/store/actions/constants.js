@@ -15,3 +15,4 @@ export const GET_RECIPE_BY_ID = 'GET_RECIPE_BY_ID';
 export const LOGGED_OUT = 'LOGGED_OUT';
 
 export const USER_REGISTERED = 'USER_REGISTERED';
+export const PROFILE_UPDATED = 'PROFILE_UPDATED';
