@@ -15,10 +15,9 @@ const styles = {
         color: '#f04d22'
     },
     img: {
-        width: 'calc(100%/2)',
-        float: 'left',
-        marginTop: '5px',
-        marginLeft: '150px',
+        width: '80%',
+    height: '20vw',
+    objectFit: 'cover',
     }
 };
 class RecipeDetailLayout extends React.Component {
@@ -61,7 +60,7 @@ class RecipeDetailLayout extends React.Component {
                                      </div>
                                 </div>
                             </div>
-                            <div className='col'>
+                            <div className='col d-flex justify-content-center'>
                                 <img style={styles.img} src={this.props.recipes.selected.image} />
                             </div>
                         </div>
