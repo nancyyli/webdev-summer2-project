@@ -88,6 +88,10 @@ export const login = (credentials = {username: "", password: ""}) => {
     });
   };
 };
+// searchRecipeByAuthor: authorId => dispatch(actions.searchRecipeByAuthor(authorId)),
+// searchRecipeByTitle: title => dispatch(actions.searchRecipeByTitle(title)),
+// searchRecipeByIngredient: ingredientName => dispatch(actions.searchRecipeByIngredient(ingredientName))
+
 
 export const register = (registration = { email: "", password: "", name: "", role: "" }) => {
   return dispatch => {
@@ -99,6 +103,26 @@ export const register = (registration = { email: "", password: "", name: "", rol
   };
 };
 
+export const searchRecipeByTitle = (title) => {
+  return dispatch => {
+    axios.get('/api/recipe/', {
+      params: {
+         title: title
+      }
+    }).then(response => {
+      dispatch({ type: constants.SEARCH_RECIPE_TITLE, recipe: response.data});
+    })
+  }
+
+}
+
+export const searchRecipeByAuthor = (authorName) => {
+  return;
+}
+
+export const searchRecipeByIngredient = (ingredientName) => {
+  return;
+}
 export const updateProfile = (updates = { email: "", name: "", role: "" }) => {
   return dispatch => {
     axios.put('/api/user/me', updates).then((response) => {

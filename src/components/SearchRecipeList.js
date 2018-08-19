@@ -16,7 +16,7 @@ const styles = {
     }
 };
 
-class RecipeList extends React.Component {
+class SearchRecipeList extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -40,15 +40,12 @@ class RecipeList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    loggedIn: state.user.loggedIn,
-    user: state.user.info, 
     recipes: state.recipe
   });
   
 const mapActionsToProps = dispatch => ({
-    getRecipes: dispatch(actions.getRecipes())
 });
 
-export default withRouter(connect(mapStateToProps, mapActionsToProps)(RecipeList));
+export default withRouter(connect(mapStateToProps, mapActionsToProps)(SearchRecipeList));
 
 
