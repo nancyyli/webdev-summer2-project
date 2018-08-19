@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
-
-import { RecipeBody } from '../components/RecipeDetail/RecipeBody';
+import * as actions from 'store/actions';
+import RecipeBody from '../components/RecipeDetail/RecipeBody';
 import Ingredients from '../components/RecipeDetail/Ingredients';
-
+import { connect } from 'react-redux';
 
 import { Paper, Typography }
     from '@material-ui/core';
@@ -24,6 +24,13 @@ const styles = {
 class RecipeDetailLayout extends React.Component {
     constructor(props) {
         super(props);
+        this.props.getRecipeById(this.props.match.params.recipeId);
+    }
+
+    shouldComponentUpdate(nextProps) {
+        this.props = nextProps;
+        console.log(this.props);
+        return true;
     }
 
     render() {
@@ -34,7 +41,7 @@ class RecipeDetailLayout extends React.Component {
                         <div className='row'>
                             <div className='col'>
                                 <Typography variant="display2">
-                                    Shrimp and Chorizo Paella
+                                    {this.props.recipes.selected.title}
                                 </Typography>
                                 <Typography className="mt-1" variant="caption">
                                     <em>Published: {Date()}</em>
@@ -61,10 +68,10 @@ class RecipeDetailLayout extends React.Component {
                         </div>
                         <div className='row'>
                         <div className='col-4'>
-                            <Ingredients /> 
+                            <Ingredients ingredients={this.props.recipes.selected.ingredients}/> 
                         </div>
                             <div className='col'>
-                                <RecipeBody />
+                                <RecipeBody steps={this.props.recipes.selected.steps}/>
                             </div>
                         </div>
                     </Paper>
@@ -108,4 +115,14 @@ RecipeDetailLayout.propTypes = {
 
 };
 
-export default withRouter(RecipeDetailLayout);
+const mapStateToProps = state => ({
+    loggedIn: state.user.loggedIn,
+    user: state.user.info, 
+    recipes: state.recipe
+  });
+  
+const mapActionsToProps = dispatch => ({
+    getRecipeById: recipeId => dispatch(actions.getRecipeById(recipeId))
+});
+
+export default withRouter(connect(mapStateToProps, mapActionsToProps)(RecipeDetailLayout));

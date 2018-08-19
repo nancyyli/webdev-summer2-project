@@ -75,6 +75,14 @@ export const register = (registration = { email: "", password: "", name: "", rol
   };
 };
 
+export const getRecipeById = (id) => {
+  return dispatch => {
+    axios('/api/recipe/' + id).then(response => {
+      dispatch( { type: constants.GET_RECIPE_BY_ID, recipe: response.data});
+    })
+  }
+}
+
 export const logout = (history) => {
   return dispatch => {
     axios.post('/logout').then(() => {

@@ -37,15 +37,16 @@ class Ingredients extends React.Component {
     };
 
     render() {
-        return (
-            <div>
-                <Typography variant="headline">
-                    Ingredients:
-                                </Typography>
-                <List>
-                    {['5 Large Shrimp', '2 bowls of Rice', '2 teaspoons of spices', '3 tablespoons of oil'].map(value => (
-                        <ListItem
-                            key={value}
+        console.log(this.props.ingredients);
+            return (
+                <div>
+                    <Typography variant="headline">
+                        Ingredients:
+                                    </Typography>
+                    <List>
+                        {this.props.ingredients && this.props.ingredients.map(value => (
+                            <ListItem
+                            key={value.ingredient}
                             role={undefined}
                             dense
                             button
@@ -58,12 +59,12 @@ class Ingredients extends React.Component {
                                 disableRipple
                                 style={styles.tomato}
                             />
-                            <ListItemText primary={value} secondary/>
+                            <ListItemText primary={value.quantity + ' ' + value.modifier + ' ' + value.ingredient} secondary/>
                         </ListItem>
-                    ))}
-                </List>
-            </div>
-        );
+                        ))}
+                    </List>
+                </div>
+            );
     }
 }
 
