@@ -7,6 +7,7 @@
     "@material-ui/icons": "^2.0.2",
     "axios": "^0.18.0",
     "bootstrap": "^4.1.3",
+    "date-fns": "^1.29.0",
     "font-awesome": "^4.7.0",
     "popmotion-pose": "^2.1.2",
     "react": "^16.4.2",

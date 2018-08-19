@@ -13,7 +13,7 @@ const userReducer = (state = DEFAULT_STATE, action) => {
       return { loggedIn: true, info: action.user };
     case constants.USER_DATA_FETCH_FAILED:
     case constants.LOGGED_OUT:
-      return { loggedIn: false, info: {} };
+      return DEFAULT_STATE;
     default:
       return state
   }
