@@ -38,6 +38,15 @@ export const getFollowers = (id) => {
   }
 }
 
+export const unfollowUser = (userId) => {
+  return dispatch => {
+    axios.delete(`/api/user/me/following/${userId}`).then(response => {
+      dispatch({ type: constants.USER_UNFOLLOWED });
+      dispatch(getUserData());
+    });
+  };
+};
+
 export const loginFacebook = (fbResponse) => {
   return dispatch => {
     const fbId = fbResponse.authResponse.userID;

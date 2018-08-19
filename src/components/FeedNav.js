@@ -71,7 +71,7 @@ class FeedNav extends React.Component {
             <Tab label="Create"
               icon={<AddCircle />}
               style={{outline: 'none'}}/>
-            <Tab label="Friends"
+            <Tab label="Following"
               icon={<Contacts />}
               style={{outline: 'none'}}/>
             <Tab label="Settings"

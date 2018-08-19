@@ -89,18 +89,6 @@ export const Profile = ({ currentUser, followers }) => {
               </Typography>
             </div>
           </div>
-          <div className="row mt-3">
-            <div className="form-inline ml-2">
-              <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png" />
-              <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png" />
-              <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png" />
-              <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png" />
-              <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png" />
-              <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png" />
-              <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png" />
-              <Avatar style={styles.followers} src="https://bootdey.com/img/Content/avatar/avatar6.png" />
-            </div>
-          </div>
         </div>
       </div>
       <div className='col-xl-8'>
