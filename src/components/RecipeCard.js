@@ -30,7 +30,6 @@ class RecipeCard extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.props = newProps;
-    console.log(newProps);
   }
 
   handleClickOpen(scroll) {
