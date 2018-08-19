@@ -51,6 +51,19 @@ export const getRecipes = () => {
   }
 };
 
+export const login = (credentials = {username: "", password: ""}) => {
+  return dispatch => {
+    const loginData = new FormData();
+    loginData.append('username', credentials.username);
+    loginData.append('password', credentials.password);
+
+    axios.post('/login', loginData).then(() => {
+      dispatch({ type: constants.APP_LOGIN_SUCCESS });
+      dispatch(getUserData());
+    });
+  };
+};
+
 export const logout = (history) => {
   return dispatch => {
     axios.post('/logout').then(() => {

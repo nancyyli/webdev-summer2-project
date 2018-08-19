@@ -1,10 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { TextField, Button } from '@material-ui/core';
+
 import * as actions from 'store/actions';
 
 
 class Login extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = { username: "", password: "" };
+  }
+
   componentDidMount () {
     this.refreshFacebook();
   }
@@ -18,18 +25,55 @@ class Login extends React.Component {
     });
   }
 
+  handleLogin = () => {
+    this.props.login({
+      username: this.state.username,
+      password: this.state.password
+    });
+  }
+
   render () {
     return (
-      <div className="container-fluid mt-5 mb-5">
-        <div className="row">
-          <div className="fb-login-button"
-            data-scope="public_profile,email"
-            data-max-rows="1"
-            data-size="large"
-            data-button-type="login_with"
-            data-show-faces="false"
-            data-auto-logout-link="false"
-            data-use-continue-as="true"></div>
+      <div>
+        <div className="container-fluid mt-5 mb-5">
+          <div>
+            <TextField
+              id="email"
+              label="Email"
+              value={this.state.username}
+              onChange={ev => this.setState({ username: ev.target.value })}
+              margin="normal"
+              fullWidth={true}
+              required={true} />
+          </div>
+          <div>
+            <TextField
+              id="password"
+              label="Password"
+              type="password"
+              value={this.state.password}
+              onChange={ev => this.setState({ password: ev.target.value })}
+              margin="normal"
+              fullWidth={true}
+              required={true} />
+          </div>
+          <div>
+            <Button variant="contained" color="primary" fullWidth={true} onClick={this.handleLogin}>
+              Sign In
+            </Button>
+          </div>
+        </div>
+        <div className="container-fluid mt-5 mb-5">
+          <div className="text-center">
+            <div className="fb-login-button"
+              data-scope="public_profile,email"
+              data-max-rows="1"
+              data-size="large"
+              data-button-type="login_with"
+              data-show-faces="false"
+              data-auto-logout-link="false"
+              data-use-continue-as="true"></div>
+          </div>
         </div>
       </div>
     );
@@ -37,7 +81,8 @@ class Login extends React.Component {
 }
 
 const dispatchToPropsMapper = dispatch => ({
-  fbLoggedIn: fbResponse => dispatch(actions.loginFacebook(fbResponse))
+  fbLoggedIn: fbResponse => dispatch(actions.loginFacebook(fbResponse)),
+  login: credentials => dispatch(actions.login(credentials))
 });
 
 const stateToPropsMapper = state => ({

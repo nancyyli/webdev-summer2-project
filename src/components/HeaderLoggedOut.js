@@ -40,7 +40,7 @@ class HeaderLoggedOut extends React.Component {
               Login
             </Button>
           </Toolbar>
-          <Dialog open={this.state.showLogin} onClose={this.handleLoginClose}>
+          <Dialog open={this.state.showLogin} onClose={this.handleLoginClose} maxWidth='sm' fullWidth={true}>
             <DialogContent>
               <Login visible={this.state.showLogin} />
             </DialogContent>
