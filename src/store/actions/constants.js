@@ -15,3 +15,6 @@ export const GET_RECIPE_BY_ID = 'GET_RECIPE_BY_ID';
 export const LOGGED_OUT = 'LOGGED_OUT';
 
 export const USER_REGISTERED = 'USER_REGISTERED';
+
+
+export const SEARCH_RECIPE_TITLE = 'SEARCH_RECIPE_TITLE';

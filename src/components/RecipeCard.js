@@ -34,7 +34,6 @@ class RecipeCard extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.props = newProps;
-    console.log(this.props);
   }
 
   handleClickOpen(scroll) {
@@ -88,7 +87,7 @@ class RecipeCard extends React.Component {
             </Button>
             </Link>
           </Card>
-        </div>
+        </div> 
         <div className='col'>
           &nbsp;
           </div>
