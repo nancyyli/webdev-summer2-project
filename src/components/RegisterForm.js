@@ -25,8 +25,7 @@ class RegisterForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: '',
-            lastName: '',
+            name: '',
             password: '',
             password2: '',
             email: '',
@@ -44,25 +43,16 @@ class RegisterForm extends React.Component {
         return (<div>
 
             <div className='row'>
-                <div className='col'>
+                <div className='col-12'>
                     <TextField
-                        id="firstName"
-                        label="First Name"
+                        id="name"
+                        label="Name"
                         className=''
-                        value={this.state.firstName}
-                        onChange={this.handleChange('firstName')}
+                        value={this.state.name}
+                        onChange={this.handleChange('name')}
                         margin="normal"
+                        fullWidth={true}
                         required={true}
-                    />
-                </div>
-                <div className='col'>
-                    <TextField
-                        id="lastName"
-                        label="Last Name"
-                        className=''
-                        value={this.state.lastName}
-                        onChange={this.handleChange('lastName')}
-                        margin="normal"
                     />
                 </div>
             </div>
