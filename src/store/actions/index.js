@@ -9,6 +9,7 @@ export const queryLoginStatus = () => {
       response => {
         dispatch({ type: constants.FACEBOOK_LOGIN_SUCCESS });
         dispatch({ type: constants.USER_DATA_FETCHED, user: response.data });
+        dispatch(getFollowers(response.data.id));
       },
       error => {
         dispatch({ type: constants.USER_DATA_FETCH_FAILED });
@@ -19,10 +20,23 @@ export const queryLoginStatus = () => {
 export const getUserData = () => {
   return dispatch => {
     axios.get('/api/user/me').then(response => {
-      dispatch({ type: constants.USER_DATA_FETCHED, user: response.data });
+      const user = response.data;
+      dispatch({ type: constants.USER_DATA_FETCHED, user });
+      dispatch(getFollowers(response.data.id));
     });
   };
 };
+
+export const getFollowers = (id) => {
+  return dispatch => {
+    axios.get(`/api/user/${id}/following`).then(response => {
+      dispatch({ type: constants.USER_FOLLOWING_FETCHED, following: response.data });
+    });
+    axios.get(`/api/user/${id}/followers`).then(response => {
+      dispatch({ type: constants.USER_FOLLOWERS_FETCHED, followers: response.data });
+    });
+  }
+}
 
 export const loginFacebook = (fbResponse) => {
   return dispatch => {

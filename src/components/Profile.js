@@ -45,7 +45,7 @@ const styles = {
 };
 
 
-export const Profile = ({ currentUser }) => {
+export const Profile = ({ currentUser, followers }) => {
   const profilePicUrl = '/api/user/' + currentUser.id + '/picture.jpg';
   return (<div className="container-fluid mt-5 mb-5">
     <div className="row">
@@ -85,7 +85,8 @@ export const Profile = ({ currentUser }) => {
             </div>
             <div className='col-xl-10 mt-3 ml-1'>
               <Typography variant="caption">
-                x number of friends on Kooker</Typography>
+                {followers.length} followers
+              </Typography>
             </div>
           </div>
           <div className="row mt-3">
@@ -122,6 +123,9 @@ export const Profile = ({ currentUser }) => {
 
 const dispatchToPropsMapper = dispatch => ({});
 
-const stateToPropsMapper = state => ({ currentUser: state.user.info });
+const stateToPropsMapper = state => ({
+  currentUser: state.user.info,
+  followers: state.user.followers
+});
 
 export const ProfileContainer = withRouter(connect(stateToPropsMapper, dispatchToPropsMapper)(Profile));
