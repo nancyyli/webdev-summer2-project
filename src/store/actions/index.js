@@ -51,6 +51,16 @@ export const getRecipes = () => {
   };
 };
 
+export const createRecipe = (recipe) => {
+  const newRecipe = JSON.stringify(recipe);
+  return dispatch => {
+    axios.post('/api/recipe', newRecipe, {
+      headers: { 'content-type': 'application/json'}}).then(response => {
+      dispatch( { type: constants.CREATE_RECIPE, recipe: response.data});
+    })
+  }
+}
+
 
 export const login = (credentials = {username: "", password: ""}) => {
   return dispatch => {

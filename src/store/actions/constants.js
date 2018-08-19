@@ -9,6 +9,7 @@ export const USER_DATA_FETCHED = 'USER_DATA_FETCHED';
 export const USER_DATA_FETCH_FAILED = 'USER_DATA_FETCH_FAILED';
 
 export const GET_RECIPES = 'GET_RECIPES';
+export const CREATE_RECIPE = 'CREATE_RECIPE';
 
 export const GET_RECIPE_BY_ID = 'GET_RECIPE_BY_ID';
 export const LOGGED_OUT = 'LOGGED_OUT';
