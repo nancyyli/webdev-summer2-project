@@ -4,7 +4,7 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { Typography, Paper, TextField, Button } from '@material-ui/core';
-
+import * as actions from 'store/actions';
 import 'styles/Homepage.css';
 
 const styles = {
@@ -19,18 +19,46 @@ class CreateLayout extends React.Component {
         this.state = {
             title: '',
             description: '',
-            date: '',
+            created: '',
             yield: '',
             duration: '',
-            img: '',
+            image: '',
             ingredients: '',
             steps: '',
         };
     }
+
     handleChange = (name) => event => {
         this.setState({
             [name]: event.target.value
         });
+    }
+
+    addRecipe() {
+        let newState;
+        newState = Object.assign({}, this.state);
+        let newDate = new Date(this.state.created);
+        let newIngredients = [
+            {
+                "ingredientId": 1,
+                "quantity": "2 cloves",
+                "modifier": "minced"
+            },
+            {
+                "ingredientId": 2,
+                "quantity": "1 stick",
+                "modifier": "soft"
+            }
+        ]
+        let newSteps = [];
+        this.state.steps.split('\n').map((value) => (
+            newSteps.push({ text: value})
+        ));
+        newState.created = newDate;
+        newState.ingredients = newIngredients;
+        newState.steps = newSteps;
+
+        this.props.createRecipe(newState);
     }
 
     render() {
@@ -58,7 +86,7 @@ class CreateLayout extends React.Component {
                                         label="Recipe title"
                                         helperText="Please add your Recipe's Title"
                                         value={this.state.name}
-                                        onChange={this.handleChange('name')}
+                                        onChange={this.handleChange('title')}
                                         margin='normal'
                                         fullWidth={true}
                                         required={true}
@@ -68,11 +96,11 @@ class CreateLayout extends React.Component {
                             <div className='row'>
                                 <div className='col'>
                                     <TextField
-                                        id="date"
+                                        id="created"
                                         label="Publish Date"
                                         type="date"
                                         defaultValue={currDate}
-                                        onChange={this.handleChange('date')}
+                                        onChange={this.handleChange('created')}
                                         InputLabelProps={{
                                             shrink: true,
                                         }}
@@ -113,9 +141,9 @@ class CreateLayout extends React.Component {
                                         className='mt-4'
                                     />
                                     <TextField
-                                        id="img"
+                                        id="image"
                                         label="Image of Recipe"
-                                        onChange={this.handleChange('img')}
+                                        onChange={this.handleChange('image')}
                                         helperText="Please paste the source link for the recipe image."
                                         fullWidth={true}
                                         className='mt-2'
@@ -123,7 +151,7 @@ class CreateLayout extends React.Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className='col'>
+                                {/* <div className='col'>
                                     <TextField
                                         id="ingredients"
                                         label="Recipe Ingredients"
@@ -132,13 +160,13 @@ class CreateLayout extends React.Component {
                                         onChange={this.handleChange('ingredients')}
                                         margin='normal'
                                         fullWidth={true}
-                                        required={true}
+                                        required={false}
                                         multiline
                                         rows="10"
                                         className='mt-4'
                                     />
 
-                                </div>
+                                </div> */}
                                 <div className='col'>
                                     <TextField
                                         id="steps"
@@ -164,7 +192,7 @@ class CreateLayout extends React.Component {
                                         variant="contained"
                                         color="primary"
                                         fullWidth={true}
-                                        onClick={this.doRegistration}
+                                        onClick={() => this.addRecipe(this.state)}
                                         style={{outline: 'none'}}>
                                         Submit recipe
                                      </Button>
@@ -191,7 +219,7 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = dispatch => ({
-
+    createRecipe: newRecipe => dispatch(actions.createRecipe(newRecipe))
 });
 
 export default withRouter(connect(mapStateToProps, mapActionsToProps)(CreateLayout));

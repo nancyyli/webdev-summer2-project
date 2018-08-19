@@ -27,6 +27,8 @@ const recipeReducer = (state = DEFAULT_STATE, action) => {
     case constants.GET_RECIPE_BY_ID:
       newState.selected = action.recipe;
       return newState;
+    case constants.CREATE_RECIPE:
+      newState.selected = action.recipe;
     default:
       return state
   }
