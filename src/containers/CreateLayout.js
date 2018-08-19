@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { Typography, Paper, TextField, Button } from '@material-ui/core';
+import { Typography, Paper, TextField, Button, MenuItem, IconButton } from '@material-ui/core';
+import { AddCircle } from '@material-ui/icons';
 import * as actions from 'store/actions';
 import 'styles/Homepage.css';
 
@@ -12,6 +13,22 @@ const styles = {
         padding: 10
     }
 }
+
+const ingredients = [
+    {
+        value: 'EX1',
+        label: 'Example Ingredient 1'
+    },
+    {
+        value: 'EX2',
+        label: 'Example Ingredient 2'
+    },
+    {
+        value: 'EX3',
+        label: 'Example Ingredient 3'
+    },
+]
+
 let currDate = Date();
 class CreateLayout extends React.Component {
     constructor(props) {
@@ -24,10 +41,13 @@ class CreateLayout extends React.Component {
             duration: '',
             image: '',
             ingredients: '',
+            quantity: '',
+            modifer: '',
+            ingredientName: '',
             steps: '',
         };
     }
-
+    
     handleChange = (name) => event => {
         this.setState({
             [name]: event.target.value
@@ -52,7 +72,7 @@ class CreateLayout extends React.Component {
         ]
         let newSteps = [];
         this.state.steps.split('\n').map((value) => (
-            newSteps.push({ text: value})
+            newSteps.push({ text: value })
         ));
         newState.created = newDate;
         newState.ingredients = newIngredients;
@@ -96,20 +116,6 @@ class CreateLayout extends React.Component {
                             <div className='row'>
                                 <div className='col'>
                                     <TextField
-                                        id="created"
-                                        label="Publish Date"
-                                        type="date"
-                                        defaultValue={currDate}
-                                        onChange={this.handleChange('created')}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        helperText="When was this Recipe published?"
-                                        fullWidth={true}
-                                        className="mt-4"
-
-                                    />
-                                    <TextField
                                         id="yield"
                                         label="Sevings"
                                         onChange={this.handleChange('yield')}
@@ -140,18 +146,22 @@ class CreateLayout extends React.Component {
                                         multiline
                                         className='mt-4'
                                     />
-                                    <TextField
-                                        id="image"
-                                        label="Image of Recipe"
-                                        onChange={this.handleChange('image')}
-                                        helperText="Please paste the source link for the recipe image."
-                                        fullWidth={true}
-                                        className='mt-2'
-                                    />
+                                </div>
+                            </div>
+                            <div className='row'>
+                                <div className='col'>  
+                                <TextField
+                                    id="image"
+                                    label="Image of Recipe"
+                                    onChange={this.handleChange('image')}
+                                    helperText="Please paste the source link for the recipe image."
+                                    fullWidth={true}
+                                    className='mt-2'
+                                />
                                 </div>
                             </div>
                             <div className="row">
-                                {/* <div className='col'>
+                                <div className='col'>
                                     <TextField
                                         id="ingredients"
                                         label="Recipe Ingredients"
@@ -161,12 +171,63 @@ class CreateLayout extends React.Component {
                                         margin='normal'
                                         fullWidth={true}
                                         required={false}
-                                        multiline
                                         rows="10"
+                                        select
                                         className='mt-4'
-                                    />
+                                    >
+                                        {ingredients.map(option => (
+                                            <MenuItem key={option.value} value={option.value}>
+                                                {option.label}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
 
-                                </div> */}
+                                    <div className='row'>
+                                        <div className='col'>
+                                            <TextField
+                                                id="quantity"
+                                                label="Quantity"
+                                                onChange={this.handleChange('quantity')}
+                                                className='mt-2'
+                                            />
+                                            <TextField
+                                                id="modifier"
+                                                label="Modifer"
+                                                onChange={this.handleChange('modifer')}
+                                                className='mt-2'
+                                            />
+                                        </div>
+                                        <div className='col d-flex align-items-center'>
+                                            <Button className="mt-5"
+                                                variant='raised'
+                                                style={{ outline: 'none' }}
+                                                color='primary'
+                                                size='small'>
+                                                Add ingredient
+                                            </Button>
+                                        </div>
+                                    </div>
+                                    <div className='row'>
+                                        <div className='col'>
+                                            <TextField
+                                                id="ingredientName"
+                                                label="Ingredient Name"
+                                                helperText="Can't find ingredient? Add the name here."
+                                                onChange={this.handleChange('ingredientName')}
+                                                className='mt-2'
+                                            />
+                                        </div>
+                                        <div className='col d-flex align-items-center'>
+                                            <Button className="mt-5"
+                                                variant='raised'
+                                                style={{ outline: 'none' }}
+                                                color='primary'
+                                                size='small'>
+                                                Add new ingredient
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className='col'>
                                     <TextField
                                         id="steps"
@@ -193,7 +254,7 @@ class CreateLayout extends React.Component {
                                         color="primary"
                                         fullWidth={true}
                                         onClick={() => this.addRecipe(this.state)}
-                                        style={{outline: 'none'}}>
+                                        style={{ outline: 'none' }}>
                                         Submit recipe
                                      </Button>
                                 </div>

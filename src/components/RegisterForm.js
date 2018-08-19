@@ -5,24 +5,12 @@ import { TextField, MenuItem, Button } from '@material-ui/core';
 
 import { register } from 'store/actions';
 
+import { roles } from 'util/constants';
+
 
 const styles = {
 
 };
-const roles = [
-    {
-        value: 'VERIFIED_CHEF',
-        label: 'Verified Chef'
-    },
-    {
-        value: 'DEFAULT',
-        label: 'Kooker User'
-    },
-    {
-        value: 'ADMIN',
-        label: 'Admin'
-    }
-];
 
 class RegisterForm extends React.Component {
     constructor(props) {
