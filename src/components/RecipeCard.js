@@ -2,7 +2,7 @@ import React from 'react';
 import RecipeDetailLayout from '../containers/RecipeDetailLayout';
 
 import { Link, Route, withRouter } from 'react-router-dom';
-
+import format from 'date-fns/format';
 import { Card, CardHeader, Avatar, IconButton, CardMedia, Typography, CardContent, CardActions, Collapse, Button } from '@material-ui/core';
 import { MoreVert, FavoriteIcon, ShareIcon, ExpandMoreIcon } from '@material-ui/icons';
 
@@ -30,6 +30,7 @@ class RecipeCard extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.props = newProps;
+    console.log(this.props);
   }
 
   handleClickOpen(scroll) {
@@ -65,17 +66,16 @@ class RecipeCard extends React.Component {
                 </IconButton>
               }
               title={this.props.recipe.title || ''}
-              subheader="August 16, 2018"
+              subheader= {format(new Date(this.props.recipe.created), "MMM D, YYYY")}
             />
             <CardMedia
               style={styles.cardMedia}
               component="img"
-              src="https://res.cloudinary.com/hksqkdlah/image/upload/s--l2y15uPK--/c_scale,f_auto,h_688,q_jpegmini:2,w_688/24617_sfs-paella-for-two-10"
+              src={this.props.recipe.image}
             />
             <CardContent>
               <Typography component="p">
-                This impressive paella is a perfect party dish and a fun meal to cook together with
-                your guests. Add 1 cup of frozen peas along with the mussels, if you like.
+              {this.props.recipe.description}
             </Typography>
             </CardContent>
             <Link to={`/profile/recipes/${this.props.recipe.id}`}>
