@@ -21,9 +21,8 @@ class Homepage extends React.Component {
           {this.props.loggedIn ?
             <div>
               <HeaderLoggedIn user={this.props.user} />
-              <Redirect to='/profile/recipes'>
-              </Redirect>
               <Switch>
+                <Route exact path="/" render={() => <Redirect to='/profile/recipes' />} />
                 <Route path='/profile/recipes/:recipeId' component={RecipeDetailLayout} />
                 <Route path='/profile/recipes' render={() => <ProfileContainer user={this.props.user} />} />
               </Switch>
@@ -51,7 +50,7 @@ Homepage.propTypes = {
 
 const mapStateToProps = state => ({
   loggedIn: state.user.loggedIn,
-  user: state.user.info, 
+  user: state.user.info,
   recipe: state.recipe
 });
 
@@ -60,4 +59,3 @@ const mapActionsToProps = dispatch => ({
 });
 
 export default withRouter(connect(mapStateToProps, mapActionsToProps)(Homepage));
-
