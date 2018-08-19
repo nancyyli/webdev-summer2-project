@@ -52,7 +52,7 @@ class RegisterForm extends React.Component {
                         value={this.state.firstName}
                         onChange={this.handleChange('firstName')}
                         margin="normal"
-                        required="true"
+                        required={true}
                     />
                 </div>
                 <div className='col'>
@@ -75,7 +75,7 @@ class RegisterForm extends React.Component {
                         value={this.state.password}
                         onChange={this.handleChange('password')}
                         autoComplete="current-password"
-                        required="true"
+                        required={true}
                         margin="normal"
                     />
                 </div>
@@ -87,7 +87,7 @@ class RegisterForm extends React.Component {
                         value={this.state.password2}
                         onChange={this.handleChange('password2')}
                         autoComplete="current-password"
-                        required="true"
+                        required={true}
                         margin="normal"
                     />
                 </div>
@@ -100,7 +100,7 @@ class RegisterForm extends React.Component {
                         className=''
                         value={this.state.email}
                         onChange={this.handleChange('email')}
-                        require='true'
+                        required={true}
                         margin="normal"
                     />
                 </div>
@@ -112,7 +112,7 @@ class RegisterForm extends React.Component {
                         value={this.state.role}
                         onChange={this.handleChange('role')}
                         margin="normal"
-                        fullWidth='true'
+                        fullWidth={true}
                     >
                         {roles.map(option => (
                             <MenuItem key={option.value} value={option.value}>
@@ -127,7 +127,7 @@ class RegisterForm extends React.Component {
                     &nbsp;
                 </div>
                 <div className='col-8'>
-                    <Button variant="contained" color="primary" fullWidth='true'>
+                    <Button variant="contained" color="primary" fullWidth={true}>
                         Sign up
                     </Button>
                 </div>
