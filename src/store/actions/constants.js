@@ -6,8 +6,5 @@ export const APP_LOGIN_SUCCESS = 'APP_LOGIN_SUCCESS';
 export const USER_DATA_FETCHED = 'USER_DATA_FETCHED';
 export const USER_DATA_FETCH_FAILED = 'USER_DATA_FETCH_FAILED';
 
-<<<<<<< HEAD
 export const GET_RECIPES = 'GET_RECIPES';
-=======
 export const LOGGED_OUT = 'LOGGED_OUT';
->>>>>>> 8a2fc57417502e49978555930eea05bee509fa09
