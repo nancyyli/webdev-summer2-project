@@ -59,14 +59,14 @@ class SearchLayout extends React.Component {
     }
 
     render() {
-        return (<div>
+        return (<div className='container-fluid'>
             <div className='row mt-4'>
                 <div className='col'>
                     &nbsp;
              </div>
                 <div className='col-xl-8'>
                     <div className='row'>
-                        <div className='col-10 mt-3'>
+                        <div className='col-8 mt-3'>
                             <TextField
                                 id="search"
                                 label="Search for Recipes"
@@ -101,24 +101,16 @@ class SearchLayout extends React.Component {
                                 ))}
                             </TextField>
                         </div>
-
-                        <div className='row mt-5'>
-                            <div className='col'>
-                                &nbsp;
-                                </div>
-                            <div className='col-6'>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    fullWidth={true}
-                                    onClick={() => this.searchRecipe()}
-                                    style={{ outline: 'none' }}>
-                                    Search
+                        <div className='col mt-4'>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                fullWidth={true}
+                                onClick={() => this.searchRecipe()}
+                                style={{ outline: 'none' }}
+                                size='small'>
+                                Search
                                      </Button>
-                            </div>
-                            <div className='col'>
-                                &nbsp;
-                                </div>
                         </div>
                     </div>
                 </div>
@@ -129,8 +121,14 @@ class SearchLayout extends React.Component {
             </div>
             <div className='row'>
                 <div className='col'>
+                    &nbsp;
+            </div>
+                <div className='col-8'>
                     <SearchRecipeList recipes={this.props.recipes.list} />
                 </div>
+                <div className='col'>
+                    &nbsp;
+            </div>
             </div>
         </div>
         );
