@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import * as actions from 'store/actions';
 import RecipeBody from '../components/RecipeDetail/RecipeBody';
 import Ingredients from '../components/RecipeDetail/Ingredients';
+import RecipeComments from 'components/RecipeComments';
 import { connect } from 'react-redux';
 import format from 'date-fns/format';
 import { Paper, Typography }
@@ -29,6 +30,10 @@ class RecipeDetailLayout extends React.Component {
     shouldComponentUpdate(nextProps) {
         this.props = nextProps;
         return true;
+    }
+
+    makeComment = comment => {
+      this.props.commentOnRecipe(this.props.recipes.selected.id, comment);
     }
 
     render() {
@@ -64,12 +69,15 @@ class RecipeDetailLayout extends React.Component {
                             </div>
                         </div>
                         <div className='row'>
-                        <div className='col-4'>
-                            <Ingredients ingredients={this.props.recipes.selected.ingredients}/> 
-                        </div>
+                          <div className='col-4'>
+                              <Ingredients ingredients={this.props.recipes.selected.ingredients}/>
+                          </div>
                             <div className='col'>
                                 <RecipeBody steps={this.props.recipes.selected.steps}/>
                             </div>
+                        </div>
+                        <div className='row'>
+                          <RecipeComments currentUser={this.props.user} comments={this.props.recipes.selected.comments} onComment={this.makeComment} />
                         </div>
                     </Paper>
                 </div>
@@ -88,12 +96,13 @@ RecipeDetailLayout.propTypes = {
 
 const mapStateToProps = state => ({
     loggedIn: state.user.loggedIn,
-    user: state.user.info, 
+    user: state.user.info,
     recipes: state.recipe
   });
-  
+
 const mapActionsToProps = dispatch => ({
-    getRecipeById: recipeId => dispatch(actions.getRecipeById(recipeId))
+    getRecipeById: recipeId => dispatch(actions.getRecipeById(recipeId)),
+    commentOnRecipe: (recipeId, comment) => dispatch(actions.commentOnRecipe(recipeId, comment))
 });
 
 export default withRouter(connect(mapStateToProps, mapActionsToProps)(RecipeDetailLayout));

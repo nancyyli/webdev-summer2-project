@@ -10,5 +10,9 @@ export const roles = [
     {
         value: 'ADMIN',
         label: 'Admin'
+    },
+    {
+      value: 'CRITIC',
+      label: 'Critic'
     }
 ];

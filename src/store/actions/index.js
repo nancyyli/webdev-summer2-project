@@ -185,6 +185,14 @@ export const getRecipeById = (id) => {
   }
 }
 
+export const commentOnRecipe = (recipeId, comment) => {
+  return dispatch => {
+    axios.post(`/api/recipe/${recipeId}/comments`, comment).then(() => {
+      dispatch(getRecipeById(recipeId));
+    });
+  };
+};
+
 export const logout = (history) => {
   return dispatch => {
     axios.post('/logout').then(() => {
