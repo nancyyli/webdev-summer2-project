@@ -1,7 +1,7 @@
 import React from 'react';
 import RecipeDetailLayout from '../containers/RecipeDetailLayout';
 
-import { Link, withRouter } from 'react-router-dom';
+import { Link, Route, withRouter } from 'react-router-dom';
 
 import { Card, CardHeader, Avatar, IconButton, CardMedia, Typography, CardContent, CardActions, Collapse, Button } from '@material-ui/core';
 import { MoreVert, FavoriteIcon, ShareIcon, ExpandMoreIcon } from '@material-ui/icons';
@@ -73,8 +73,8 @@ class RecipeCard extends React.Component {
                 your guests. Add 1 cup of frozen peas along with the mussels, if you like.
             </Typography>
             </CardContent>
-            <Link to={'/profile/recipes/:recipeId'} style={styles.link}>
-              <Button className="float-right" onClick={() => this.handleClickOpen()} >
+            <Link to={'/profile/recipes/:recipeId'} >
+              <Button className="float-right" onClick={() => this.handleClickOpen()} style={styles.button}>
                 More...
             </Button>
             </Link>
@@ -82,11 +82,7 @@ class RecipeCard extends React.Component {
         </div>
         <div className='col'>
           &nbsp;
-    </div>
-        <RecipeDetailLayout
-          open={this.state.open}
-          close={this.handleClose}
-          scroll={this.state.scroll} />
+          </div>
       </div>
     );
   }

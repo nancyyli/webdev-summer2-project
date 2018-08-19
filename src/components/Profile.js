@@ -47,7 +47,8 @@ export const Profile = ({ currentUser }) => {
           <Typography className="mt-4" variant="headline">{currentUser.name}</Typography>
           <Typography variant="body1">@username</Typography>
           <Typography className="mt-2" variant="caption">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam quis quam. Maecenas ipsum velit, consectetuer eu lobortis ut,
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam quis quam. Maecenas 
+            ipsum velit, consectetuer eu lobortis ut,
         </Typography>
           <div className="row mt-2">
             <div className='col-xl-1'>
