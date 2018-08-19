@@ -21,6 +21,12 @@ const recipeReducer = (state = DEFAULT_STATE, action) => {
     case constants.SEARCH_RECIPE_TITLE:
       newState.list = action.recipe;
       return newState;
+    case constants.SEARCH_RECIPE_INGREDIENT:
+      newState.list = action.recipe;
+      return newState;
+    case constants.SEARCH_RECIPE_AUTHOR:
+      newState.list = action.recipe;
+      return newState;
     default:
       return state
   }
