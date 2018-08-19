@@ -15,6 +15,10 @@ const roles = [
         value: 'user',
         label: 'Kooker User'
     },
+    {
+        value: 'admin',
+        label: 'Admin'
+    }
 ];
 
 class RegisterForm extends React.Component {
