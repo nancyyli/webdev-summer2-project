@@ -5,7 +5,7 @@ import * as actions from 'store/actions';
 import RecipeBody from '../components/RecipeDetail/RecipeBody';
 import Ingredients from '../components/RecipeDetail/Ingredients';
 import { connect } from 'react-redux';
-
+import format from 'date-fns/format';
 import { Paper, Typography }
     from '@material-ui/core';
 
@@ -44,7 +44,7 @@ class RecipeDetailLayout extends React.Component {
                                     {this.props.recipes.selected.title}
                                 </Typography>
                                 <Typography className="mt-1" variant="caption">
-                                    <em>Published: {Date()}</em>
+                                    <em>Published: {format(new Date(this.props.recipes.selected.created), "MMM D, YYYY")}</em>
                                 </Typography>
                                 <Typography className="mt-3" variant="headline">
                                     What is this Recipe?
@@ -52,8 +52,7 @@ class RecipeDetailLayout extends React.Component {
                                 <div className='row'>
                                     <div className="col-8">
                                         <Typography variant="body1" className='text-secondary'>
-                                            This impressive paella is a perfect party dish and a fun meal to cook together with
-                                           your guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                                            {this.props.recipes.selected.description}
                                          </Typography>
                                     </div>
 
@@ -63,7 +62,7 @@ class RecipeDetailLayout extends React.Component {
                                 </div>
                             </div>
                             <div className='col'>
-                                <img style={styles.img} src="https://res.cloudinary.com/hksqkdlah/image/upload/s--l2y15uPK--/c_scale,f_auto,h_688,q_jpegmini:2,w_688/24617_sfs-paella-for-two-10" />
+                                <img style={styles.img} src={this.props.recipes.selected.image} />
                             </div>
                         </div>
                         <div className='row'>
