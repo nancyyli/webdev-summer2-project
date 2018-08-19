@@ -40,6 +40,15 @@ export const loginFacebook = (fbResponse) => {
       dispatch(getUserData());
     });
   };
+
+};
+
+export const getRecipes = () => {
+  return dispatch => {
+    axios('/api/recipe').then(response => {
+      dispatch( { type: constants.GET_RECIPES, recipe: response.data});
+    })
+  }
 };
 
 export const logout = (history) => {

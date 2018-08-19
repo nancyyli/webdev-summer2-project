@@ -46,11 +46,13 @@ class Homepage extends React.Component {
 Homepage.propTypes = {
   loggedIn: PropTypes.bool,
   user: PropTypes.object,
+  recipe: PropTypes.array
 };
 
 const mapStateToProps = state => ({
   loggedIn: state.user.loggedIn,
-  user: state.user.info
+  user: state.user.info, 
+  recipe: state.recipe
 });
 
 const mapActionsToProps = dispatch => ({
