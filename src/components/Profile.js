@@ -7,10 +7,16 @@ import { connect } from 'react-redux';
 import { Avatar, BottomNavigation, BottomNavigationAction, Typography, Icon }
   from '@material-ui/core';
 
+
+import { Alarm, Email, Contacts, Subject, SettingsSharp, AddCircle } from '@material-ui/icons';
+import FeedNav from './FeedNav';
 import format from 'date-fns/format';
 
-import { Alarm, Email, Contacts, Subject, SettingsSharp } from '@material-ui/icons';
+
 import RecipeList from '../containers/RecipeList';
+import FriendsLayout from '../containers/FriendsLayout';
+import CreateLayout from '../containers/CreateLayout';
+import SettingsLayout from '../containers/SettingsLayout';
 
 const styles = {
   largeIcon: {
@@ -28,6 +34,7 @@ const styles = {
   bottom_nav_action: {
     outline: 'none',
     color: 'white',
+    marginRight: 50
   },
   link: {
     textDecoration: 'none'
@@ -103,19 +110,15 @@ export const Profile = ({ currentUser }) => {
         </div>
         <div className="row">
           <div className="col mb-4">
-            <BottomNavigation className="rounded" style={styles.bottom_nav}>
-              <Link to={'/profile/recipes'} style={styles.link}>
-                <BottomNavigationAction showLabel={true} label="Recipes"
-                  style={styles.bottom_nav_action} icon={<Icon><Subject /></Icon>} />
-              </Link>
-              <BottomNavigationAction showLabel={true} label="Friends"
-                style={styles.bottom_nav_action} icon={<Icon><Contacts /></Icon>} />
-              <BottomNavigationAction showLabel={true} label="Settings"
-                style={styles.bottom_nav_action} icon={<Icon><SettingsSharp /></Icon>} />
-            </BottomNavigation>
+            <FeedNav />
           </div>
         </div>
         <Route path="/profile/recipes" component={RecipeList}></Route>
+        <Route path="/profile/recipes/create" component={CreateLayout}></Route>
+        <Route path="/profile/friends" component={FriendsLayout}></Route>
+        <Route path="/profile/settings" component={SettingsLayout}></Route>
+
+
       </div>
     </div>
   </div>);
