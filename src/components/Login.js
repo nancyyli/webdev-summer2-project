@@ -9,9 +9,13 @@ class Login extends React.Component {
     this.refreshFacebook();
   }
 
-  refreshFacebook (){
+  refreshFacebook = () => {
     window.FB.XFBML.parse();
-    window.FB.Event.subscribe('auth.statusChange', this.props.fbLoggedIn);
+    window.FB.Event.subscribe('auth.statusChange', response => {
+      if (response.status === 'connected') {
+        this.props.fbLoggedIn(response);
+      }
+    });
   }
 
   render () {
