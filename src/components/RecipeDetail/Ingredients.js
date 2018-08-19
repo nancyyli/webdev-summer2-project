@@ -37,7 +37,6 @@ class Ingredients extends React.Component {
     };
 
     render() {
-        console.log(this.props.ingredients);
             return (
                 <div>
                     <Typography variant="headline">

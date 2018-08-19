@@ -28,7 +28,6 @@ class RecipeDetailLayout extends React.Component {
 
     shouldComponentUpdate(nextProps) {
         this.props = nextProps;
-        console.log(this.props);
         return true;
     }
 
