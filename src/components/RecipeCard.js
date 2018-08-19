@@ -78,7 +78,7 @@ class RecipeCard extends React.Component {
                 your guests. Add 1 cup of frozen peas along with the mussels, if you like.
             </Typography>
             </CardContent>
-            <Link to={'/profile/recipes/:recipeId'} >
+            <Link to={`/profile/recipes/${this.props.recipe.id}`}>
               <Button className="float-right" onClick={() => this.handleClickOpen()} style={styles.button}>
                 More...
             </Button>

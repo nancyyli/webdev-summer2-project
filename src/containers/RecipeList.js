@@ -19,7 +19,6 @@ const styles = {
 class RecipeList extends React.Component {
     constructor(props) {
         super(props);
-
     }
 
     shouldComponentUpdate(nextProps) {

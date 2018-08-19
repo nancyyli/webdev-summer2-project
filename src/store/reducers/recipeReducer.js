@@ -13,15 +13,19 @@ const DEFAULT_STATE = {
     "yield": "",
     "ingredients": [],
     "steps": []
-  }]
+  }],
+  selected: {}
 };
 
 const recipeReducer = (state = DEFAULT_STATE, action) => {
   let newState;
+  newState = Object.assign({}, state);
   switch (action.type) {
     case constants.GET_RECIPES:
-      newState = Object.assign({}, state)
       newState.list = action.recipe;
+      return newState;
+    case constants.GET_RECIPE_BY_ID:
+      newState.selected = action.recipe;
       return newState;
     default:
       return state
