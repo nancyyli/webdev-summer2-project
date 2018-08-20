@@ -41,7 +41,7 @@ class FeedNav extends React.Component {
     this.state = {
       value: 0,
     };
-  } 
+  }
 
   handleChange = (event, value) => {
     this.setState({ value });

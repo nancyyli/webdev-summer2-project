@@ -100,7 +100,7 @@ export const Profile = ({ currentUser, followers }) => {
         </div>
         <div className="row">
           <div className="col mb-4">
-            <FeedNav />
+            <FeedNav user={currentUser} />
           </div>
         </div>
       </div>

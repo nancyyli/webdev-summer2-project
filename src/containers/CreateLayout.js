@@ -38,7 +38,7 @@ class CreateLayout extends React.Component {
         this.props = nextProps;
         return true;
     }
-    
+
     handleChange = (name) => event => {
         this.setState({
             [name]: event.target.value
@@ -93,11 +93,19 @@ class CreateLayout extends React.Component {
         newState.created = newDate;
         newState.steps = newSteps;
 
-        this.props.createRecipe(newState); 
+        this.props.createRecipe(newState);
         this.props.history.push("/profile/recipes/" + this.props.recipes.selected.id);
     }
     // ALERT: add alert when user adds a new ingredient (adding the ingredientName)
     render() {
+      if (!(this.props.currentUser.role === 'VERIFIED_CHEF' || this.props.currentUser.role === 'ADMIN')) {
+        return (
+          <Typography variant='display1' className='mt-3'>
+            Become a Verified Chef™ to write recipes!
+          </Typography>
+        );
+      }
+
         return (<div className='row mt-4'>
             <div className='col-xl'>
                 <Typography variant='display1'>
@@ -165,7 +173,7 @@ class CreateLayout extends React.Component {
                                 </div>
                             </div>
                             <div className='row'>
-                                <div className='col'>  
+                                <div className='col'>
                                 <TextField
                                     id="image"
                                     label="Image of Recipe"
@@ -305,7 +313,8 @@ CreateLayout.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    recipes: state.recipe
+    recipes: state.recipe,
+    currentUser: state.user.info
 });
 
 const mapActionsToProps = dispatch => ({
