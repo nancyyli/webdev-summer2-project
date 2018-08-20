@@ -71,11 +71,6 @@ class HeaderLoggedIn extends React.Component {
                 Explore
               </Typography>
             </Link>
-            <Link className="mt-1 mr-4" to='/' style={styles.link}>
-              <Typography variant="subheading" style={styles.appText}>
-                About
-              </Typography>
-            </Link>
           </div>
           <IconButton
             style={styles.icon}
