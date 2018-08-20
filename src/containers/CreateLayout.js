@@ -14,21 +14,6 @@ const styles = {
     }
 }
 
-const ingredients = [
-    {
-        value: 'EX1',
-        label: 'Example Ingredient 1'
-    },
-    {
-        value: 'EX2',
-        label: 'Example Ingredient 2'
-    },
-    {
-        value: 'EX3',
-        label: 'Example Ingredient 3'
-    },
-]
-
 let currDate = Date();
 class CreateLayout extends React.Component {
     constructor(props) {
@@ -40,12 +25,18 @@ class CreateLayout extends React.Component {
             yield: '',
             duration: '',
             image: '',
-            ingredients: '',
+            ingredient: '',
+            ingredients: [],
             quantity: '',
             modifer: '',
             ingredientName: '',
             steps: '',
         };
+    }
+
+    shouldComponentUpdate(nextProps) {
+        this.props = nextProps;
+        return true;
     }
     
     handleChange = (name) => event => {
@@ -54,33 +45,69 @@ class CreateLayout extends React.Component {
         });
     }
 
+    addNewIngredient() {
+        let newIngredient = {
+            name: this.state.ingredientName
+        }
+        this.props.addNewIngredient(newIngredient);
+        this.setState( {
+            ingredientName: ''
+        })
+    }
+
+    getIngredientById(id) {
+        var name = 'not ingredient';
+        this.props.recipes.ingredients.map(ingredient => {
+            if (ingredient.id == id) {
+                name = ingredient.name;
+            }
+        })
+        return name;
+    }
+
+    addIngredient() {
+        let newIngredient = {
+            ingredientId: this.state.ingredient,
+            quantity: this.state.quantity,
+            modifier: this.state.modifer
+        }
+        this.state.ingredients.push(newIngredient);
+        this.setState({
+            ingredient: 0,
+            quantity: '',
+            modifer: ''
+        }, () => {
+          });
+    }
+
+
     addRecipe() {
         let newState;
         newState = Object.assign({}, this.state);
         let newDate = new Date(this.state.created);
-        let newIngredients = [
-            {
-                "ingredientId": 1,
-                "quantity": "2 cloves",
-                "modifier": "minced"
-            },
-            {
-                "ingredientId": 2,
-                "quantity": "1 stick",
-                "modifier": "soft"
-            }
-        ]
+        // let newIngredients = [
+        //     {
+        //         "ingredientId": 1,
+        //         "quantity": "2 cloves",
+        //         "modifier": "minced"
+        //     },
+        //     {
+        //         "ingredientId": 2,
+        //         "quantity": "1 stick",
+        //         "modifier": "soft"
+        //     }
+        // ]
         let newSteps = [];
         this.state.steps.split('\n').map((value) => (
             newSteps.push({ text: value })
         ));
         newState.created = newDate;
-        newState.ingredients = newIngredients;
+        // newState.ingredients = newIngredients;
         newState.steps = newSteps;
 
         this.props.createRecipe(newState);
     }
-
+    // ALERT: add alert when user adds a new ingredient (adding the ingredientName)
     render() {
         return (<div className='row mt-4'>
             <div className='col-xl'>
@@ -163,11 +190,11 @@ class CreateLayout extends React.Component {
                             <div className="row">
                                 <div className='col'>
                                     <TextField
-                                        id="ingredients"
+                                        id="ingredient"
                                         label="Recipe Ingredients"
                                         helperText="Please list all ingredients required, separated by line breaks"
-                                        value={this.state.ingredients}
-                                        onChange={this.handleChange('ingredients')}
+                                        value={this.state.ingredient}
+                                        onChange={this.handleChange('ingredient')}
                                         margin='normal'
                                         fullWidth={true}
                                         required={false}
@@ -175,9 +202,9 @@ class CreateLayout extends React.Component {
                                         select
                                         className='mt-4'
                                     >
-                                        {ingredients.map(option => (
-                                            <MenuItem key={option.value} value={option.value}>
-                                                {option.label}
+                                        {this.props.recipes.ingredients.map(option => (
+                                            <MenuItem key={option.id} value={option.id}>
+                                                {option.name}
                                             </MenuItem>
                                         ))}
                                     </TextField>
@@ -187,12 +214,14 @@ class CreateLayout extends React.Component {
                                             <TextField
                                                 id="quantity"
                                                 label="Quantity"
+                                                value={this.state.quantity}
                                                 onChange={this.handleChange('quantity')}
                                                 className='mt-2'
                                             />
                                             <TextField
                                                 id="modifier"
                                                 label="Modifer"
+                                                value={this.state.modifer}
                                                 onChange={this.handleChange('modifer')}
                                                 className='mt-2'
                                             />
@@ -202,16 +231,25 @@ class CreateLayout extends React.Component {
                                                 variant='raised'
                                                 style={{ outline: 'none' }}
                                                 color='primary'
+                                                onClick={() => this.addIngredient()}
                                                 size='small'>
                                                 Add ingredient
                                             </Button>
                                         </div>
                                     </div>
                                     <div className='row'>
+                                        Added Ingredients:
+                                    </div>
+                                    {this.state.ingredients && this.state.ingredients.map(ingredient => (
+                                    <div className='row'>
+                                        {ingredient.quantity + ' ' + ingredient.modifier + ' ' + this.getIngredientById(ingredient.ingredientId)}
+                                    </div>))}
+                                    <div className='row'>
                                         <div className='col'>
                                             <TextField
                                                 id="ingredientName"
                                                 label="Ingredient Name"
+                                                value={this.state.ingredientName}
                                                 helperText="Can't find ingredient? Add the name here."
                                                 onChange={this.handleChange('ingredientName')}
                                                 className='mt-2'
@@ -222,6 +260,7 @@ class CreateLayout extends React.Component {
                                                 variant='raised'
                                                 style={{ outline: 'none' }}
                                                 color='primary'
+                                                onClick={() => this.addNewIngredient()}
                                                 size='small'>
                                                 Add new ingredient
                                             </Button>
@@ -277,10 +316,13 @@ CreateLayout.propTypes = {
 };
 
 const mapStateToProps = state => ({
+    recipes: state.recipe
 });
 
 const mapActionsToProps = dispatch => ({
-    createRecipe: newRecipe => dispatch(actions.createRecipe(newRecipe))
+    createRecipe: newRecipe => dispatch(actions.createRecipe(newRecipe)),
+    addNewIngredient: newIngredient => dispatch(actions.addNewIngredient(newIngredient)),
+    getIngredients: dispatch(actions.getIngredients())
 });
 
 export default withRouter(connect(mapStateToProps, mapActionsToProps)(CreateLayout));

@@ -74,6 +74,18 @@ export const getRecipes = () => {
   };
 };
 
+export const getIngredients = () => {
+  return dispatch => {
+    axios.get('/api/ingredient/', {
+      params: {
+        search: ''
+      }
+    }).then(response => {
+      dispatch( { type: constants.GET_INGREDIENTS, ingredients: response.data})
+    })
+  }
+}
+
 export const createRecipe = (recipe) => {
   const newRecipe = JSON.stringify(recipe);
   return dispatch => {
@@ -84,6 +96,15 @@ export const createRecipe = (recipe) => {
   }
 }
 
+export const addNewIngredient = (ingredient) => {
+  const newIngredient = JSON.stringify(ingredient);
+  return dispatch => {
+    axios.post('/api/ingredient/', newIngredient, {
+      headers: { 'content-type': 'application/json'}}).then(response => {
+        dispatch( { type: constants.CREATE_INGREDIENT, ingredient: response.data});
+    })
+  }
+}
 
 export const login = (credentials = {username: "", password: ""}) => {
   return dispatch => {
