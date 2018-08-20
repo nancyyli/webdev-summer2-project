@@ -100,9 +100,20 @@ class CreateLayout extends React.Component {
     render() {
       if (!(this.props.currentUser.role === 'VERIFIED_CHEF' || this.props.currentUser.role === 'ADMIN')) {
         return (
-          <Typography variant='display1' className='mt-3'>
-            Become a Verified Chef™ to write recipes!
-          </Typography>
+            <div className='row mt-5'>
+            <div className='col'>
+              &nbsp;
+          </div>
+            <div className='col-6 d-flex'>
+              <Typography variant='display1'>
+                    You are not a verified Chef.<br/> <br/> Please apply to be a verfied chef at: <br/> <b>support@kooker.com </b><br/> so our Chef Verification Team can get back to you!
+                </Typography>
+            
+            </div>
+            <div className='col'>
+              &nbsp;
+          </div>
+          </div>
         );
       }
 

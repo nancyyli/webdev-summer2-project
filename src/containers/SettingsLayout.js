@@ -40,8 +40,8 @@ class SettingsLayout extends React.Component {
           Profile Settings
         </Typography>
 
-        <div className='container-fluid'>
-          <div className="row">
+        <div className='container-fluid bg-light rounded'>
+          <div className="row mt-5">
             <div className='col'>
               <div className='row'>
                 <div className='col'>
@@ -106,7 +106,7 @@ class SettingsLayout extends React.Component {
                   &nbsp;
               </div>
                 <div className='col-4'>
-                  <Button variant="contained" color="primary" fullWidth={true} margin="normal" onClick={this.doUpdate}>
+                  <Button style={{outline: 'none'}} variant="contained" color="primary" fullWidth={true} margin="normal" onClick={this.doUpdate}>
                     Save
               </Button>
                 </div>

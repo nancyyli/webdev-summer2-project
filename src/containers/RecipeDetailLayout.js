@@ -46,7 +46,7 @@ class RecipeDetailLayout extends React.Component {
 
     render() {
         return (
-            <div className='row mt-5'>
+            <div className='row mt-5 mb-5'>
                 <div className='col-10 offset-md-1 mt-3'>
                     <Paper elevation='2' component='div' className='pt-5 pb-5 pl-5 pr-5'>
                         <div className='row'>
@@ -58,13 +58,13 @@ class RecipeDetailLayout extends React.Component {
                                     <em>Published: {format(new Date(this.props.recipes.selected.created), "MMM D, YYYY")}</em>
                                 </Typography>
                                 <div className='mt-1'>
-                                  <Typography variant='secondary' style={{display: 'inline'}}>
-                                    by {this.props.recipes.selected.author && this.props.recipes.selected.author.name}
+                                  <Typography  className="text-secondary" variant='body1' style={{display: 'inline'}}>
+                                    Authored by: <b>{this.props.recipes.selected.author && this.props.recipes.selected.author.name}</b>
                                   </Typography>
                                   {this.props.recipes.selected.author && this.props.recipes.selected.author.id !== this.props.user.id ?
                                     (this.props.recipes.selected.author && this.isFollowing(this.props.recipes.selected.author.id) ?
-                                        <Button size='small' onClick={() => this.props.unfollowUser(this.props.recipes.selected.author.id)}>Unfollow</Button> :
-                                        <Button size='small' onClick={() => this.props.followUser(this.props.recipes.selected.author.id)}>Follow</Button>) : null}
+                                        <Button className="ml-3" style={{outline: 'none'}} size='small' onClick={() => this.props.unfollowUser(this.props.recipes.selected.author.id)}>Unfollow</Button> :
+                                        <Button className="ml-3" style={{outline: 'none'}} size='small' onClick={() => this.props.followUser(this.props.recipes.selected.author.id)}>Follow</Button>) : null}
                                 </div>
                                 <Typography className="mt-3" variant="headline">
                                     What is this Recipe?

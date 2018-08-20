@@ -73,7 +73,7 @@ class Login extends React.Component {
               &nbsp;
           </div>
             <div className='col-8'>
-              <Button variant="contained" color="primary" fullWidth={true} onClick={this.handleLogin}>
+              <Button style={{outline: 'none'}}variant="contained" color="primary" fullWidth={true} onClick={this.handleLogin}>
                 Sign In
             </Button>
             </div>
@@ -84,7 +84,7 @@ class Login extends React.Component {
         </div>
         <div className='row d-flex justify-content-center'>
           <Typography variant='body2'>
-            Or login with loginFacebook
+            Or login with FaceBook
         </Typography>
         </div>
         <div className="container-fluid mt-5 mb-5">
