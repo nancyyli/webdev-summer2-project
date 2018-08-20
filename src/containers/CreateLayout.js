@@ -56,7 +56,7 @@ class CreateLayout extends React.Component {
     }
 
     getIngredientById(id) {
-        var name = 'not ingredient';
+        var name = '';
         this.props.recipes.ingredients.map(ingredient => {
             if (ingredient.id == id) {
                 name = ingredient.name;
@@ -85,27 +85,16 @@ class CreateLayout extends React.Component {
         let newState;
         newState = Object.assign({}, this.state);
         let newDate = new Date(this.state.created);
-        // let newIngredients = [
-        //     {
-        //         "ingredientId": 1,
-        //         "quantity": "2 cloves",
-        //         "modifier": "minced"
-        //     },
-        //     {
-        //         "ingredientId": 2,
-        //         "quantity": "1 stick",
-        //         "modifier": "soft"
-        //     }
-        // ]
+
         let newSteps = [];
         this.state.steps.split('\n').map((value) => (
             newSteps.push({ text: value })
         ));
         newState.created = newDate;
-        // newState.ingredients = newIngredients;
         newState.steps = newSteps;
 
-        this.props.createRecipe(newState);
+        this.props.createRecipe(newState); 
+        this.props.history.push("/profile/recipes/" + this.props.recipes.selected.id);
     }
     // ALERT: add alert when user adds a new ingredient (adding the ingredientName)
     render() {
@@ -322,7 +311,8 @@ const mapStateToProps = state => ({
 const mapActionsToProps = dispatch => ({
     createRecipe: newRecipe => dispatch(actions.createRecipe(newRecipe)),
     addNewIngredient: newIngredient => dispatch(actions.addNewIngredient(newIngredient)),
-    getIngredients: dispatch(actions.getIngredients())
+    getIngredients: dispatch(actions.getIngredients()),
+    getRecipes: dispatch(actions.getRecipes())
 });
 
 export default withRouter(connect(mapStateToProps, mapActionsToProps)(CreateLayout));
