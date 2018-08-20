@@ -8,7 +8,7 @@ import { Avatar, BottomNavigation, BottomNavigationAction, Typography, Icon }
   from '@material-ui/core';
 
 
-import { Alarm, Email, Contacts, Subject, SettingsSharp, AddCircle } from '@material-ui/icons';
+import { Alarm, Email, Contacts, Subject, SettingsSharp, AddCircle, Face } from '@material-ui/icons';
 import FeedNav from './FeedNav';
 import format from 'date-fns/format';
 
@@ -75,6 +75,18 @@ export const Profile = ({ currentUser, followers }) => {
             <div className='col-xl-10 mt-3 ml-1'>
               <Typography variant="caption">
                 {currentUser.email}
+              </Typography>
+            </div>
+          </div>
+          <div className="row mt-2">
+            <div className='col-xl-1'>
+              <Icon>
+                <Face style={styles.icon} />
+              </Icon>
+            </div>
+            <div className='col-xl-10 mt-3 ml-1'>
+              <Typography variant="caption">
+                {currentUser.role}
               </Typography>
             </div>
           </div>
