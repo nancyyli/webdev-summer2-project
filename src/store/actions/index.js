@@ -168,7 +168,7 @@ export const searchRecipeByIngredient = (ingredientName) => {
 
 }
 
-export const updateProfile = (updates = { email: "", name: "", role: "" }) => {
+export const updateProfile = (updates = { email: "", name: "", role: "", profile_picture: '' }) => {
   return dispatch => {
     axios.put('/api/user/me', updates).then((response) => {
       dispatch({ type: constants.PROFILE_UPDATED });

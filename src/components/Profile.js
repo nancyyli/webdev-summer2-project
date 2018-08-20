@@ -44,6 +44,11 @@ const styles = {
   }
 };
 
+const imgError = (image) => {
+  image.onerror = '';
+  image.src = 'https://static.tvtropes.org/pmwiki/pub/images/spongebob_patrick.jpg';
+  return true;
+};
 
 export const Profile = ({ currentUser, followers }) => {
   const profilePicUrl = '/api/user/' + currentUser.id + '/picture.jpg';
@@ -51,12 +56,17 @@ export const Profile = ({ currentUser, followers }) => {
     <div className="row">
       <div className='col-xl-2 offset-md-1'>
         <div className='col-xl'>
-          <Avatar style={styles.largeIcon} src={profilePicUrl} />
+          <Avatar style={styles.largeIcon} 
+          // src={profilePicUrl}
+          //   onerror={imgError(this)}
+            >
+            <img src={profilePicUrl} onError={(e)=>{e.target.src='https://static.tvtropes.org/pmwiki/pub/images/spongebob_patrick.jpg'}}/>
+            </Avatar>
           <Typography className="mt-4" variant="headline">{currentUser.name}</Typography>
           <div className="row mt-2">
             <div className='col-xl-1'>
               <Icon >
-                <Alarm style={styles.icon}/>
+                <Alarm style={styles.icon} />
               </Icon>
             </div>
             <div className='col-xl-10 mt-2 ml-1'>
@@ -68,7 +78,7 @@ export const Profile = ({ currentUser, followers }) => {
           <div className="row mt-2">
             <div className='col-xl-1'>
               <Icon>
-                <Email style={styles.icon}/>
+                <Email style={styles.icon} />
               </Icon>
             </div>
             <div className='col-xl-10 mt-3 ml-1'>

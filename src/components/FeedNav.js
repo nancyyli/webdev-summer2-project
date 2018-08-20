@@ -41,7 +41,7 @@ class FeedNav extends React.Component {
     this.state = {
       value: 0,
     };
-  }
+  } 
 
   handleChange = (event, value) => {
     this.setState({ value });
@@ -88,7 +88,6 @@ class FeedNav extends React.Component {
           <TabContainer dir={theme.direction}> <CreateLayout /></TabContainer>
           <TabContainer dir={theme.direction}><FriendsLayout /></TabContainer>
           <TabContainer dir={theme.direction}><SettingsLayout /></TabContainer>
-
         </SwipeableViews>
       </div>
     );
