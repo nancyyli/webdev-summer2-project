@@ -168,10 +168,21 @@ export const searchRecipeByAuthor = (authorName) => {
         }).then(response => {
           dispatch({ type: constants.SEARCH_RECIPE_AUTHOR, recipe: response.data});
         })
-      }
+      } 
     })
     dispatch( {type: constants.SEARCH_RECIPE_AUTHOR, recipe: [] })
   })}
+}
+
+export const getRecipesByAuthor = (authorId) => {
+
+  return dispatch => { axios.get('/api/recipe/', {
+    params: {
+      author: authorId
+    }
+  }).then(response => {
+    dispatch({ type: constants.GET_RECIPE_AUTHOR, recipe: response.data});
+  })};
 }
 
 export const searchRecipeByIngredient = (ingredientName) => {

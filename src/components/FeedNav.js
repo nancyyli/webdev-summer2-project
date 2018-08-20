@@ -84,7 +84,7 @@ class FeedNav extends React.Component {
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}
         >
-          <TabContainer dir={theme.direction}><RecipeList /></TabContainer>
+          <TabContainer dir={theme.direction}><RecipeList justCurrentUser={true}/></TabContainer>
           <TabContainer dir={theme.direction}> <CreateLayout /></TabContainer>
           <TabContainer dir={theme.direction}><FriendsLayout /></TabContainer>
           <TabContainer dir={theme.direction}><SettingsLayout /></TabContainer>

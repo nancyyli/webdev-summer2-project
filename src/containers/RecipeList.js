@@ -21,8 +21,13 @@ class RecipeList extends React.Component {
         super(props);
     }
 
+    componentDidMount() {
+        var userId = this.props.user.id;
+        this.props.getRecipesByAuthor(userId);
+    } 
     shouldComponentUpdate(nextProps) {
         this.props = nextProps;
+        var userId = this.props.user.id;
         return true;
     }
     render() {
@@ -30,7 +35,7 @@ class RecipeList extends React.Component {
             <div className='row mt-4'>
                 <div className='col-xl'>
                     <Typography variant='display1'>Recipes</Typography>
-                {this.props.recipes.list && this.props.recipes.list.map(recipe => (
+                {this.props.recipes.currentList && this.props.recipes.currentList.map(recipe => (
                 <RecipeCard recipe={recipe}/>))}
                 </div>
             </div>
@@ -46,7 +51,7 @@ const mapStateToProps = state => ({
   });
   
 const mapActionsToProps = dispatch => ({
-    getRecipes: dispatch(actions.getRecipes())
+    getRecipesByAuthor: authorId => dispatch(actions.getRecipesByAuthor(authorId))
 });
 
 export default withRouter(connect(mapStateToProps, mapActionsToProps)(RecipeList));
