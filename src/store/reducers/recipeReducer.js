@@ -2,6 +2,7 @@ import * as constants from "store/actions/constants"
 
 const DEFAULT_STATE = {
   list: [],
+  currentList: [],
   selected: {},
   ingredients: []
 };
@@ -18,6 +19,9 @@ const recipeReducer = (state = DEFAULT_STATE, action) => {
       return newState;
     case constants.CREATE_RECIPE:
       newState.selected = action.recipe;
+      return newState;
+    case constants.GET_RECIPE_AUTHOR:
+      newState.currentList = action.recipe;
       return newState;
     case constants.SEARCH_RECIPE_TITLE:
       newState.list = action.recipe;

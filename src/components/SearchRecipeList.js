@@ -44,6 +44,7 @@ const mapStateToProps = state => ({
   });
   
 const mapActionsToProps = dispatch => ({
+    getRecipes: dispatch(actions.getRecipes()) 
 });
 
 export default withRouter(connect(mapStateToProps, mapActionsToProps)(SearchRecipeList));
