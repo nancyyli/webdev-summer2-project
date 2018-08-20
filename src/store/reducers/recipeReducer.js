@@ -2,7 +2,8 @@ import * as constants from "store/actions/constants"
 
 const DEFAULT_STATE = {
   list: [],
-  selected: {}
+  selected: {},
+  ingredients: []
 };
 
 const recipeReducer = (state = DEFAULT_STATE, action) => {
@@ -26,6 +27,12 @@ const recipeReducer = (state = DEFAULT_STATE, action) => {
       return newState;
     case constants.SEARCH_RECIPE_AUTHOR:
       newState.list = action.recipe;
+      return newState;
+    case constants.GET_INGREDIENTS: 
+      newState.ingredients = action.ingredients;
+      return newState;
+    case constants.CREATE_INGREDIENT:
+      newState.ingredients.push(action.ingredient);
       return newState;
     default:
       return state
