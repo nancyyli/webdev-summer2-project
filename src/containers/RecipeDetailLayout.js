@@ -7,7 +7,7 @@ import Ingredients from '../components/RecipeDetail/Ingredients';
 import RecipeComments from 'components/RecipeComments';
 import { connect } from 'react-redux';
 import format from 'date-fns/format';
-import { Paper, Typography }
+import { Paper, Typography, Button }
     from '@material-ui/core';
 
 
@@ -36,6 +36,14 @@ class RecipeDetailLayout extends React.Component {
         this.props.commentOnRecipe(this.props.recipes.selected.id, comment);
     }
 
+    isFollowing = (userId) => {
+      return this.props.following.some(u => u.id === userId);
+    }
+
+    followUser = () => {
+
+    }
+
     render() {
         return (
             <div className='row mt-5'>
@@ -49,6 +57,15 @@ class RecipeDetailLayout extends React.Component {
                                 <Typography className="mt-1" variant="caption">
                                     <em>Published: {format(new Date(this.props.recipes.selected.created), "MMM D, YYYY")}</em>
                                 </Typography>
+                                <div className='mt-1'>
+                                  <Typography variant='secondary' style={{display: 'inline'}}>
+                                    by {this.props.recipes.selected.author && this.props.recipes.selected.author.name}
+                                  </Typography>
+                                  {this.props.recipes.selected.author && this.props.recipes.selected.author.id !== this.props.user.id ?
+                                    (this.props.recipes.selected.author && this.isFollowing(this.props.recipes.selected.author.id) ?
+                                        <Button size='small' onClick={() => this.props.unfollowUser(this.props.recipes.selected.author.id)}>Unfollow</Button> :
+                                        <Button size='small' onClick={() => this.props.followUser(this.props.recipes.selected.author.id)}>Follow</Button>) : null}
+                                </div>
                                 <Typography className="mt-3" variant="headline">
                                     What is this Recipe?
                                 </Typography>
@@ -98,12 +115,15 @@ RecipeDetailLayout.propTypes = {
 const mapStateToProps = state => ({
     loggedIn: state.user.loggedIn,
     user: state.user.info,
+    following: state.user.following,
     recipes: state.recipe
 });
 
 const mapActionsToProps = dispatch => ({
     getRecipeById: recipeId => dispatch(actions.getRecipeById(recipeId)),
-    commentOnRecipe: (recipeId, comment) => dispatch(actions.commentOnRecipe(recipeId, comment))
+    commentOnRecipe: (recipeId, comment) => dispatch(actions.commentOnRecipe(recipeId, comment)),
+    followUser: (userId) => dispatch(actions.followUser(userId)),
+    unfollowUser: (userId) => dispatch(actions.unfollowUser(userId))
 });
 
 export default withRouter(connect(mapStateToProps, mapActionsToProps)(RecipeDetailLayout));

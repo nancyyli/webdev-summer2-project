@@ -38,6 +38,15 @@ export const getFollowers = (id) => {
   }
 }
 
+export const followUser = (userId) => {
+  return dispatch => {
+    axios.put(`/api/user/me/following/${userId}`).then(response => {
+      dispatch({ type: constants.USER_FOLLOWED });
+      dispatch(getUserData());
+    });
+  };
+};
+
 export const unfollowUser = (userId) => {
   return dispatch => {
     axios.delete(`/api/user/me/following/${userId}`).then(response => {
@@ -166,7 +175,7 @@ export const searchRecipeByAuthor = (authorName) => {
 }
 
 export const searchRecipeByIngredient = (ingredientName) => {
-  var ingredients; 
+  var ingredients;
   var recipes;
   return dispatch => {axios.get('/api/ingredient/',{
     params: {
