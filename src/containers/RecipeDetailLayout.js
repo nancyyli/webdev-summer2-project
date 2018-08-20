@@ -17,8 +17,8 @@ const styles = {
     },
     img: {
         width: '80%',
-    height: '20vw',
-    objectFit: 'cover',
+        height: '20vw',
+        objectFit: 'cover',
     }
 };
 class RecipeDetailLayout extends React.Component {
@@ -33,7 +33,7 @@ class RecipeDetailLayout extends React.Component {
     }
 
     makeComment = comment => {
-      this.props.commentOnRecipe(this.props.recipes.selected.id, comment);
+        this.props.commentOnRecipe(this.props.recipes.selected.id, comment);
     }
 
     render() {
@@ -56,7 +56,7 @@ class RecipeDetailLayout extends React.Component {
                                     <div className="col-8">
                                         <Typography variant="body1" className='text-secondary'>
                                             {this.props.recipes.selected.description}
-                                         </Typography>
+                                        </Typography>
                                     </div>
 
                                     <div className='col'>
@@ -65,19 +65,20 @@ class RecipeDetailLayout extends React.Component {
                                 </div>
                             </div>
                             <div className='col d-flex justify-content-center'>
-                                <img style={styles.img} src={this.props.recipes.selected.image} />
+                                <img style={styles.img} src={this.props.recipes.selected.image}
+                                    onError={(e) => { e.target.src = 'http://thecrites.com/sites/all/modules/cookbook/theme/images/default-recipe-big.png'; }} />
                             </div>
                         </div>
                         <div className='row'>
-                          <div className='col-4'>
-                              <Ingredients ingredients={this.props.recipes.selected.ingredients}/>
-                          </div>
+                            <div className='col-4'>
+                                <Ingredients ingredients={this.props.recipes.selected.ingredients} />
+                            </div>
                             <div className='col'>
-                                <RecipeBody steps={this.props.recipes.selected.steps}/>
+                                <RecipeBody steps={this.props.recipes.selected.steps} />
                             </div>
                         </div>
                         <div className='row'>
-                          <RecipeComments currentUser={this.props.user} comments={this.props.recipes.selected.comments} onComment={this.makeComment} />
+                            <RecipeComments currentUser={this.props.user} comments={this.props.recipes.selected.comments} onComment={this.makeComment} />
                         </div>
                     </Paper>
                 </div>
@@ -98,7 +99,7 @@ const mapStateToProps = state => ({
     loggedIn: state.user.loggedIn,
     user: state.user.info,
     recipes: state.recipe
-  });
+});
 
 const mapActionsToProps = dispatch => ({
     getRecipeById: recipeId => dispatch(actions.getRecipeById(recipeId)),

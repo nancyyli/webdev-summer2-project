@@ -9,7 +9,7 @@ import { MoreVert, FavoriteIcon, ShareIcon, ExpandMoreIcon } from '@material-ui/
 
 const styles = {
   img: {
-      width: 'calc(100%/4)',
+    width: 'calc(100%/4)',
   },
   cardMedia: {
     width: '100%',
@@ -22,7 +22,7 @@ const styles = {
 };
 
 class RecipeCard extends React.Component {
-  
+
   constructor(props) {
     super(props);
     this.handleClose = this.handleClose.bind(this);
@@ -61,7 +61,7 @@ class RecipeCard extends React.Component {
               avatar={
                 <Avatar aria-label="Recipe" >
                   {this.props.recipe.author.name || ''}
-              </Avatar>
+                </Avatar>
               }
               action={
                 <IconButton>
@@ -69,17 +69,20 @@ class RecipeCard extends React.Component {
                 </IconButton>
               }
               title={this.props.recipe.title || ''}
-              subheader= {format(new Date(this.props.recipe.created), "MMM D, YYYY")}
+              subheader={format(new Date(this.props.recipe.created), "MMM D, YYYY")}
             />
             <CardMedia
               style={styles.cardMedia}
-              component="img"
-              src={this.props.recipe.image}            
-            />
+            // component="img"
+            // src={this.props.recipe.image}            
+            >
+              <img style={styles.cardMedia} src={this.props.recipe.image}
+                onError={(e) => { e.target.src = 'http://thecrites.com/sites/all/modules/cookbook/theme/images/default-recipe-big.png'; }} />
+            </CardMedia>
             <CardContent>
               <Typography component="p">
-              {this.props.recipe.description}
-            </Typography>
+                {this.props.recipe.description}
+              </Typography>
             </CardContent>
             <Link to={`/profile/recipes/${this.props.recipe.id}`}>
               <Button className="float-right" onClick={() => this.handleClickOpen()} style={styles.button}>
@@ -87,7 +90,7 @@ class RecipeCard extends React.Component {
             </Button>
             </Link>
           </Card>
-        </div> 
+        </div>
         <div className='col'>
           &nbsp;
           </div>

@@ -44,23 +44,14 @@ const styles = {
   }
 };
 
-const imgError = (image) => {
-  image.onerror = '';
-  image.src = 'https://static.tvtropes.org/pmwiki/pub/images/spongebob_patrick.jpg';
-  return true;
-};
-
 export const Profile = ({ currentUser, followers }) => {
   const profilePicUrl = '/api/user/' + currentUser.id + '/picture.jpg';
   return (<div className="container-fluid mt-5 mb-5">
     <div className="row">
       <div className='col-xl-2 offset-md-1'>
         <div className='col-xl'>
-          <Avatar style={styles.largeIcon} 
-          // src={profilePicUrl}
-          //   onerror={imgError(this)}
-            >
-            <img src={profilePicUrl} onError={(e)=>{e.target.src='https://static.tvtropes.org/pmwiki/pub/images/spongebob_patrick.jpg'}}/>
+          <Avatar style={styles.largeIcon} >
+            <img src={profilePicUrl} onError={(e)=>{e.target.src='http://pcm.um.edu.my/wp-content/uploads/2017/11/empty-avatar-700x480.png';}}/>
             </Avatar>
           <Typography className="mt-4" variant="headline">{currentUser.name}</Typography>
           <div className="row mt-2">
