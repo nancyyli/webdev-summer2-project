@@ -61,7 +61,7 @@ class RecipeDetailLayout extends React.Component {
                                   <Typography variant='secondary' style={{display: 'inline'}}>
                                     by {this.props.recipes.selected.author && this.props.recipes.selected.author.name}
                                   </Typography>
-                                  {this.props.recipes.selected.author && this.props.recipes.selected.author.id !== this.props.user.id ?
+                                  {this.props.loggedIn && this.props.recipes.selected.author && this.props.recipes.selected.author.id !== this.props.user.id ?
                                     (this.props.recipes.selected.author && this.isFollowing(this.props.recipes.selected.author.id) ?
                                         <Button size='small' onClick={() => this.props.unfollowUser(this.props.recipes.selected.author.id)}>Unfollow</Button> :
                                         <Button size='small' onClick={() => this.props.followUser(this.props.recipes.selected.author.id)}>Follow</Button>) : null}

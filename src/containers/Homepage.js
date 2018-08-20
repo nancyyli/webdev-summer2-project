@@ -36,6 +36,8 @@ class Homepage extends React.Component {
               <Switch>
                 <Route exact path='/' component={Home} />
                 <Route path='/login' component={Login} />
+                <Route path='/explore' component={SearchLayout} />
+                <Route path='/profile/recipes/:recipeId' component={RecipeDetailLayout} />
               </Switch>
             </div>
           }
